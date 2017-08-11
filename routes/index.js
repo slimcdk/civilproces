@@ -2,9 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res){
+router.get('/', function(req, res){
 	res.render('index');
 });
+
+
+// Get Homepage
+router.get('/users/login', function(req, res){
+    res.render('');
+});
+
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
