@@ -1,17 +1,21 @@
 {
-  "name": "loginapp",
+  "name": "civilproces",
   "version": "1.0.0",
-  "description": "Simple authentication system",
+  "description": "website",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Brad Traversy",
+  "author": [
+    "Sebastian Andreasen",
+    "Christian Skjerning"
+  ],
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "bower": "^1.8.0",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "express": "*",
