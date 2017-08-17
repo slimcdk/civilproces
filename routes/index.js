@@ -13,24 +13,6 @@ router.get('/users/login', function(req, res){
 });
 
 
-// Get event 1
-router.get('/event_1', function (req, res) {
-    res.render('event_1', {title: "Event 1"});
-});
-
-
-// Get event 2
-router.get('/event_2', function (req, res) {
-    res.render('event_2', {title: "Event 2"});
-});
-
-
-// Get event 3
-router.get('/event_3', function (req, res) {
-    res.render('event_3', {title: "Event 3"});
-});
-
-
 // Get blog
 router.get('/blog', function (req, res) {
     res.render('blog', {title: "Blog"});
@@ -44,9 +26,9 @@ router.get('/about', function (req, res) {
 
 
 // Get login
-/*router.get('/login', function (req, res) {
-    res.render('login', {title: "Login"});
-});*/
+router.get('/admin', function (req, res) {
+    res.render('admin', {title: "Admin"});
+});
 
 
 function ensureAuthenticated(req, res, next){
