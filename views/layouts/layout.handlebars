@@ -3,7 +3,7 @@
 <head>
 	<title>Civilproces</title>
 
-	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/style01.css" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap-theme.min.css">
     <script src="/jquery/dist/jquery.min.js"></script>
@@ -13,19 +13,25 @@
 </head>
 <body>
 	<div class="container">
-        <div>
-            <a href="/">Home</a>
-            <br>
-            <a href="/about">Om kurserne</a>
-            <br>
-            <a href="/blog">Blog</a>
+        <div class="row">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">Om kurserne</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
         </div>
 
-        {{{body}}}
+        <div class="row">
+            {{{body}}}
+        </div>
 
-      <footer class="footer">
-        <p>Mail. Telefon. Andre kontaktinformationer</p>
-      </footer>
+        <br>
+
+        <div class="row">
+            <footer class="footer">
+                <p>Mail. Telefon. Andre kontaktinformationer</p>
+            </footer>
+        </div>
 
     </div> <!-- /container -->
 </body>
