@@ -40,7 +40,7 @@ function ensureAuthenticated(req, res, next){
             return next();
 		} else {
             req.flash('error_msg','Du har ikke administerende rettigheder til denne side');
-			req.redirect('/');
+			res.redirect('/');
 		}
 	} else {
 		req.flash('error_msg','Du skal logge ind for at se denne side');
