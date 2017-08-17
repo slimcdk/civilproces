@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // Schema for event 1
 var event_1Schema = mongoose.Schema({
-	navn: {
+	name: {
 		type: String,
 		index:true
 	},

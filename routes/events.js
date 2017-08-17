@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var event_1 = require('../models/event_1');
 
 
 // Get event 1
@@ -33,11 +34,13 @@ router.post('/event_1', function (req, res){
             working_title: working_title,
             company: company
         });
-        //
-        // event_1.createUser(newSignup, function(err, event_1){
-        //     if(err) throw err;
-        //     console.log(event_1);
-        // });
+
+        console.log(newSignup);
+
+        newSignup.save(function(err, event_1){
+            if(err) throw err;
+            console.log(event_1);
+        });
 
         req.flash('success_msg', 'Du er nu tilmeldt');
 
