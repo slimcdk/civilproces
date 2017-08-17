@@ -80,9 +80,13 @@ app.use(function (req, res, next) {
 
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/', users);
 app.use('/blog', articles);
 app.use('/', events);
+app.use("*", function (req, res) {
+    res.status(404).render('layouts/error_404');
+});
+
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));

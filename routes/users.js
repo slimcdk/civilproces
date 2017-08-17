@@ -17,16 +17,11 @@ router.get('/login', function(req, res){
 
 // Register User
 router.post('/register', function(req, res){
-	var name = req.body.name;
-	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
 
 	// Validation
-	req.checkBody('name', 'Name is required').notEmpty();
-	req.checkBody('email', 'Email is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
@@ -39,10 +34,9 @@ router.post('/register', function(req, res){
 		});
 	} else {
 		var newUser = new User({
-			name: name,
-			email:email,
 			username: username,
-			password: password
+			password: password,
+			is_admin: false
 		});
 
 		User.createUser(newUser, function(err, user){
@@ -52,7 +46,7 @@ router.post('/register', function(req, res){
 
 		req.flash('success_msg', 'You are registered and can now login');
 
-		res.redirect('/users/login');
+		res.redirect('/login');
 	}
 });
 
@@ -93,10 +87,8 @@ router.post('/login',
 
 router.get('/logout', function(req, res){
 	req.logout();
-
 	req.flash('success_msg', 'You are logged out');
-
-	res.redirect('/users/login');
+	res.redirect('/login');
 });
 
 module.exports = router;

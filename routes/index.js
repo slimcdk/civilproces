@@ -7,10 +7,10 @@ router.get('/', function(req, res){
 });
 
 
-// Get Homepage
-router.get('/users/login', function(req, res){
-    res.render('');
-});
+// // Get Homepage
+// router.get('/login', function(req, res){
+//     res.render('');
+// });
 
 
 // Get blog
@@ -26,17 +26,25 @@ router.get('/about', function (req, res) {
 
 
 // Get login
-router.get('/admin', function (req, res) {
+router.get('/admin', ensureAuthenticated, function (req, res) {
     res.render('admin', {title: "Admin"});
+
+
 });
 
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
-		return next();
+		if(req.user.is_admin){
+            console.log("Admin accessed site");
+            return next();
+		} else {
+            req.flash('error_msg','Du har ikke administerende rettigheder til denne side');
+			req.redirect('/');
+		}
 	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/users/login');
+		req.flash('error_msg','Du skal logge ind for at se denne side');
+		res.redirect('/login');
 	}
 }
 
