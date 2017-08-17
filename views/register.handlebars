@@ -4,18 +4,18 @@
         <div class="alert alert-danger">{{msg}}</div>
       {{/each}}
 {{/if}}
-<form method="post" action="/users/register">
+<form method="post" action="/register">
   <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" placeholder="Username" name="username">
+    <label>Navn</label>
+    <input type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="username">
   </div>
   <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" placeholder="Password" name="password">
+    <label>Kodeord</label>
+    <input type="password" class="form-control" placeholder="Brug en stærk adgangskode" name="password">
   </div>
   <div class="form-group">
-    <label>Confirm Password</label>
-    <input type="password" class="form-control" placeholder="Password" name="password2">
+    <label>Bekræft kodeord</label>
+    <input type="password" class="form-control" placeholder="Skriv adgangskoden igen" name="password2">
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default">Opret</button>
 </form>
