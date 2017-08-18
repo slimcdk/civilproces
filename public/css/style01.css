@@ -1,5 +1,19 @@
+.container {
+    background-color: #00b3ee;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
 .row {
     background-color: #CCCCCC;
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    bottom: 0;
+    clear: both;
 }
 
 ul {
@@ -13,7 +27,7 @@ li {
     float: left;
 }
 
-li a {
+li a, li p {
     display: block;
     text-align: center;
     padding: 14px 16px;
