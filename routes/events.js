@@ -1,21 +1,31 @@
+
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+var gf = require('./global_functions.js');
+var event = require('../models/event.js');
+var views_path = "./views/events";
+
 
 
 // Get template for event
 router.get('/event:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
-    var view_path = "events/event_" + id;
 
-    res.render(view_path, {title: "Event " + id});
+    fs.readdir(views_path, function(err, data) {
+        if (id > 0 && id <= data.length){
+            var view_path = "events/event_" + id;
+            res.render(view_path);
+        } else {
+            res.redirect("*");
+        }
+    });
 });
 
 
 // receive data for event
 router.post('/event:id', function (req, res){
     var id = req.params.id.substring(1, Infinity);
-    var event = require('../models/event_' + id);
-
     var name = req.body.name;
     var email = req.body.email;
     var working_title = req.body.working_title;
@@ -41,8 +51,10 @@ router.post('/event:id', function (req, res){
                         name: name,
                         email: email,
                         working_title: working_title,
-                        company: company
+                        company: company,
+                        event_id: id
                     });
+
                     newSignup.save(function(err){
                         if(err) throw err;
                         req.flash('success_msg', 'Du er nu tilmeldt');
@@ -61,11 +73,11 @@ router.post('/event:id', function (req, res){
 // check if mail is assigned to event
 router.post('/check_signup:id', function(req, res){
     var id = req.params.id.substring(1, Infinity);
-    var event = require('../models/event_' + id);
     var email = req.body.email;
 
-    event.find({email: email},{__v:0}, function(err, data){
+    event.find({event_id: id, email: email},{__v:0}, function(err, data){
         if(err) throw err;
+        console.log(data);
         if(data.length !== 0){
             if(data[0].email === email){
                 req.flash('success_msg', 'Den indtastede email er allerede tilmeldt dette event');
@@ -80,34 +92,19 @@ router.post('/check_signup:id', function(req, res){
 
 
 // transmit database content
-router.get('/event_json:id', function (req, res) {
+router.get('/data:id', gf.ensureAuthenticated, function (req, res) {
     var id = req.params.id.substring(1, Infinity);
-    var event = require('../models/event_' + id);
-
-    if (id > 0 && id < 4){
-        event.find({},{__v:0}, function(err, data){
-            if(err) throw err;
-            res.status(200).send(data);
-        });
-    } else {
-        res.status(404).send(null);
-    }
+    fs.readdir(views_path, function(err, data) {
+        if (id > 0 && id <= data.length){
+            event.find({event_id: id},{__v:0, _id:0}, function(err, data){
+                if(err) throw err;
+                res.status(200).send(data);
+            });
+        } else {
+            res.status(404).send(null);
+        }
+    });
 });
 
-
-// ensure that user is authenticated
-function ensureAuthenticated(req, res, next){
-    if(req.isAuthenticated()){
-        if(req.user.is_admin){
-            return next();
-        } else {
-            req.flash('error_msg','Du har ikke administerende rettigheder til denne side');
-            res.redirect('/');
-        }
-    } else {
-        req.flash('error_msg','Du skal logge ind for at se denne side');
-        res.redirect('/login');
-    }
-}
 
 module.exports = router;

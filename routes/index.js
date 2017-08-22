@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var gf = require('./global_functions.js');
 
 // Get Homepage
 router.get('/', function(req, res){
@@ -26,26 +27,11 @@ router.get('/about', function (req, res) {
 
 
 // Get login
-router.get('/admin', ensureAuthenticated, function (req, res) {
+router.get('/admin', gf.ensureAuthenticated, function (req, res) {
     res.render('admin', {title: "Admin"});
-
-
 });
 
 
-function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		if(req.user.is_admin){
-            console.log("Admin accessed site");
-            return next();
-		} else {
-            req.flash('error_msg','Du har ikke administerende rettigheder til denne side');
-			res.redirect('/');
-		}
-	} else {
-		req.flash('error_msg','Du skal logge ind for at se denne side');
-		res.redirect('/login');
-	}
-}
+
 
 module.exports = router;
