@@ -1,10 +1,10 @@
 {
-  "name": "Civilproces",
+  "name": "civilproces",
   "description": "website",
   "main": "app.js",
   "authors": [
-    "Sebastian Andreasen",
-    "Christian Skjerning"
+    "Christian <cs@slimc.dk>",
+    "Sebastian Andresen <sebastian.sommersted@live.dk>"
   ],
   "license": "ISC",
   "homepage": "https://github.com/slimcdk/civilproces",

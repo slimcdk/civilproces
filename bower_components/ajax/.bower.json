@@ -42,6 +42,5 @@
   },
   "_source": "https://github.com/fdaciuk/ajax.git",
   "_target": "^2.3.0",
-  "_originalSource": "ajax",
-  "_direct": true
+  "_originalSource": "ajax"
 }

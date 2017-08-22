@@ -14,7 +14,7 @@ var event_3 = require('../models/event_3');
 router.get('/event_1', function (req, res) {
     res.render('events/event_1', {title: "Event 1"});
 });
-// receive data for event 3
+// receive data for event 1
 router.post('/event_1', function (req, res){
     var name = req.body.name;
     var email = req.body.email;
@@ -31,30 +31,34 @@ router.post('/event_1', function (req, res){
             req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt').isEmail();
             req.checkBody('working_title', 'Udfyld venligst din arbejdstitel').notEmpty();
             req.checkBody('company', 'Udfyld venligst din arbejdsplads').notEmpty();
-            var errors = req.validationErrors();
-            if(errors){
-                res.redirect('/event_1',{
-                    errors:errors
-                });
-            } else {
-                var newSignup = new event_3({
-                    name: name,
-                    email: email,
-                    working_title: working_title,
-                    company: company
-                });
-                newSignup.save(function(err){
-                    if(err) throw err;
-                });
-                req.flash('success_msg', 'Du er nu tilmeldt');
-                res.redirect('/event_1');
-            }
+
+            req.getValidationResult().then(function(result) {
+                if (!result.isEmpty()) {
+                    console.log("mark");
+                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. Tjek venligst at E-mailen er indtastet korrekt');
+                    res.redirect('/event_1');
+                } else {
+                    var newSignup = new event_1({
+                        name: name,
+                        email: email,
+                        working_title: working_title,
+                        company: company
+                    });
+                    newSignup.save(function(err){
+                        if(err) throw err;
+                        req.flash('success_msg', 'Du er nu tilmeldt');
+                        res.redirect('/event_1');
+                    });
+                }
+            });
+
         } else {
             req.flash('error_msg', 'Den indtastede email er allerde tilmeldt dette event');
             res.redirect('/event_1');
         }
     });
 });
+
 // check if mail is assigned to event
 router.post('/event_1_check', function(req, res){
     var email = req.body.email;
@@ -89,7 +93,7 @@ router.get('/event_1_json', function (req, res) {
 router.get('/event_2', function (req, res) {
     res.render('events/event_2', {title: "Event 2"});
 });
-// receive data for event 3
+// receive data for event 2
 router.post('/event_2', function (req, res){
     var name = req.body.name;
     var email = req.body.email;
@@ -106,24 +110,27 @@ router.post('/event_2', function (req, res){
             req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt').isEmail();
             req.checkBody('working_title', 'Udfyld venligst din arbejdstitel').notEmpty();
             req.checkBody('company', 'Udfyld venligst din arbejdsplads').notEmpty();
-            var errors = req.validationErrors();
-            if(errors){
-                res.redirect('/event_2',{
-                    errors:errors
-                });
-            } else {
-                var newSignup = new event_3({
-                    name: name,
-                    email: email,
-                    working_title: working_title,
-                    company: company
-                });
-                newSignup.save(function(err){
-                    if(err) throw err;
-                });
-                req.flash('success_msg', 'Du er nu tilmeldt');
-                res.redirect('/event_2');
-            }
+
+            req.getValidationResult().then(function(result) {
+                if (!result.isEmpty()) {
+                    console.log("mark");
+                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. Tjek venligst at E-mailen er indtastet korrekt');
+                    res.redirect('/event_2');
+                } else {
+                    var newSignup = new event_2({
+                        name: name,
+                        email: email,
+                        working_title: working_title,
+                        company: company
+                    });
+                    newSignup.save(function(err){
+                        if(err) throw err;
+                        req.flash('success_msg', 'Du er nu tilmeldt');
+                        res.redirect('/event_2');
+                    });
+                }
+            });
+
         } else {
             req.flash('error_msg', 'Den indtastede email er allerde tilmeldt dette event');
             res.redirect('/event_2');
@@ -180,24 +187,27 @@ router.post('/event_3', function (req, res){
             req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt').isEmail();
             req.checkBody('working_title', 'Udfyld venligst din arbejdstitel').notEmpty();
             req.checkBody('company', 'Udfyld venligst din arbejdsplads').notEmpty();
-            var errors = req.validationErrors();
-            if(errors){
-                res.redirect('/event_3',{
-                    errors:errors
-                });
-            } else {
-                var newSignup = new event_3({
-                    name: name,
-                    email: email,
-                    working_title: working_title,
-                    company: company
-                });
-                newSignup.save(function(err){
-                    if(err) throw err;
-                });
-                req.flash('success_msg', 'Du er nu tilmeldt');
-                res.redirect('/event_3');
-            }
+
+            req.getValidationResult().then(function(result) {
+                if (!result.isEmpty()) {
+                    console.log("mark");
+                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. Tjek venligst at E-mailen er indtastet korrekt');
+                    res.redirect('/event_3');
+                } else {
+                    var newSignup = new event_3({
+                        name: name,
+                        email: email,
+                        working_title: working_title,
+                        company: company
+                    });
+                    newSignup.save(function(err){
+                        if(err) throw err;
+                        req.flash('success_msg', 'Du er nu tilmeldt');
+                        res.redirect('/event_3');
+                    });
+                }
+            });
+
         } else {
             req.flash('error_msg', 'Den indtastede email er allerde tilmeldt dette event');
             res.redirect('/event_3');
