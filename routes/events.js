@@ -17,7 +17,7 @@ router.get('/event:id', function (req, res) {
             var view_path = "events/event_" + id;
             res.render(view_path);
         } else {
-            res.redirect("*");
+            res.status(404).render('layouts/error_404');
         }
     });
 });
@@ -91,10 +91,14 @@ router.post('/check_signup:id', function(req, res){
 
 
 // transmit database content
-router.get('/data:id', gf.ensureAuthenticated, function (req, res) {
+router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
     fs.readdir(views_path, function(err, data) {
-        if (id > 0 && id <= data.length){
+        if (id === 'length'){;
+            res.status(200).send({length: data.length});
+
+
+        } else if (id > 0 && id <= data.length){
             event.find({event_id: id},{__v:0, _id:0}, function(err, data){
                 if(err) throw err;
                 res.status(200).send(data);
