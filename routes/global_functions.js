@@ -24,8 +24,10 @@ module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next
 };
 
 
+/*
 module.exports.idExists = function idExists (id){
     fs.readdir("./views/events", function(err, data) {
         return data.length;
     });
 };
+*/

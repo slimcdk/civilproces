@@ -25,6 +25,7 @@ function getData(id, handleData) {
 
 function drawLists(id) {
     $('#data_insert').find("tr").remove();
+    $('#delete_event_btn').find("button").remove();
     getData(id, function(response){
         console.log(response.length);
         if(response.length > 0){
@@ -38,15 +39,19 @@ function drawLists(id) {
                 output += "</tr>";
             }
             $('#data_insert').append(output);
-            $('#delete_event_btn').removeClass("disabled").attr('onclick="deleteList('+ id +')"');
+            // $('#delete_event_btn').find("button").removeClass("disabled");
+            $('#delete_event_btn').append('<button class="btn btn-danger" onclick="deleteList('+id+')">Slet listen til dette event</button>');
         } else {
-            $('#delete_event_btn').addClass("disabled");
+            alert("Der er ingen tilmeldte til dette event");
         }
     });
 }
 
 function deleteList(id){
-    if(prompt("Er du sikker på, at listen skal slettes")){
-        console.log("bekræftet");
+    if(confirm("Er du sikker på, at listen til event "+id+" skal slettes")){
+        $.ajax({
+            type: "POST",
+            url: "/delete:" + id
+        });
     }
 }

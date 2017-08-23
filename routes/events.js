@@ -1,11 +1,9 @@
-
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var gf = require('./global_functions.js');
 var event = require('../models/event.js');
 var views_path = "./views/events";
-
 
 
 // Get template for event
@@ -94,10 +92,8 @@ router.post('/check_signup:id', function(req, res){
 router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
     fs.readdir(views_path, function(err, data) {
-        if (id === 'length'){;
+        if (id === 'length'){
             res.status(200).send({length: data.length});
-
-
         } else if (id > 0 && id <= data.length){
             event.find({event_id: id},{__v:0, _id:0}, function(err, data){
                 if(err) throw err;
@@ -105,6 +101,21 @@ router.get('/data:id', function (req, res) {
             });
         } else {
             res.status(404).send(null);
+        }
+    });
+});
+
+
+// delete content from database
+router.post('/delete:id', function (req, res) {
+    var id = req.params.id.substring(1, Infinity);
+    event.remove({event_id: id}, function(err){
+        if (!err){
+            req.flash('success_msg', 'Listen er nu slettet');
+            res.redirect('/admin');
+        } else {
+            req.flash('error_msg', 'Der opstod en fejl under sletningen');
+            res.redirect('/admin');
         }
     });
 });
