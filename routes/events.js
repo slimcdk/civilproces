@@ -31,7 +31,7 @@ router.post('/event:id', function (req, res){
     var working_title = req.body.working_title;
     var company = req.body.company;
 
-    event.find({email: email},{__v:0}, function(err, data) {
+    event.find({email: email, event_id: id},{__v:0}, function(err, data) {
         if (err) throw err;
         if (data.length === 0) {
 
@@ -77,7 +77,6 @@ router.post('/check_signup:id', function(req, res){
 
     event.find({event_id: id, email: email},{__v:0}, function(err, data){
         if(err) throw err;
-        console.log(data);
         if(data.length !== 0){
             if(data[0].email === email){
                 req.flash('success_msg', 'Den indtastede email er allerede tilmeldt dette event');

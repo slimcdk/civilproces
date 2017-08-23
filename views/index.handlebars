@@ -20,3 +20,15 @@
 <p>Dette link til administratorsiden vil blive fjernet. Til den tid vil administratoren skulle skrive /admin efter domænet.</p>
 
 <a href="admin">Admin (fjernes)</a>
+
+<script>
+    console.log("yo");
+    $.get('/event:1').then(function(responseData) {
+        //responseData is content from other page.
+        //$('#someElem').append(responseData);
+        //console.log(responseData);
+        console.log(template_to_json(responseData));
+
+        console.log("finished");
+    });
+</script>
