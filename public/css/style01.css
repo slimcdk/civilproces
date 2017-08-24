@@ -1,21 +1,21 @@
 .container {
-    background-color: #00b3ee;
+    /*background-color: #00b3ee;*/
     padding: 0;
     margin: 0;
     width: 100%;
 }
 
 .row {
-    background-color: #CCCCCC;
+    /*background-color: #CCCCCC;*/
     padding: 0;
     margin: 0;
 }
-
-footer {
+/*
+#footer {
     bottom: 0;
     clear: both;
 }
-
+*/
 ul {
     list-style-type: none;
     margin: 0;
@@ -32,4 +32,20 @@ li a, li p {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+#top_menu {
+    background-color: #b2dba1;
+}
+
+#body_box {
+    background-color: #28a4c9;
+}
+
+#info {
+    background-color: #5cb85c;
+}
+
+#test {
+    background-color: #c3325f;
 }
