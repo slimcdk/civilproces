@@ -15,46 +15,45 @@
 
 </head>
 <body>
-	<div class="container">
-        <div class="row">
-            <div id="top_menu" class="col-xs-12">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><p>/</p></li>
-                    <li><a href="/about">Om kurserne</a></li>
-                    <li><p>/</p></li>
-                    <li><a href="/blog">Blog</a></li>
-                </ul>
+	<div class="container wrapper">
+            <div class="row">
+                <div id="top_menu" class="col-xs-12">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><p>/</p></li>
+                        <li><a href="/about">Om kurserne</a></li>
+                        <li><p>/</p></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div id="body_box" class="col-xs-12">
-                {{#if success_msg}}
-                    <div class="alert alert-success">{{success_msg}}</div>
-                {{/if}}
+            <div class="row">
+                <div id="body_box" class="col-xs-12">
+                    {{#if success_msg}}
+                        <div class="alert alert-success">{{success_msg}}</div>
+                    {{/if}}
 
-                {{#if error_msg}}
-                    <div class="alert alert-danger">{{error_msg}}</div>
-                {{/if}}
+                    {{#if error_msg}}
+                        <div class="alert alert-danger">{{error_msg}}</div>
+                    {{/if}}
 
-                {{#if error}}
-                    <div class="alert alert-danger">{{error}}</div>
-                {{/if}}
-                {{{body}}}
+                    {{#if error}}
+                        <div class="alert alert-danger">{{error}}</div>
+                    {{/if}}
+                    {{{body}}}
+                </div>
             </div>
-        </div>
 
-        <div id="front_event_menu" class="col-xs-3 invisible">
-            <!--Knapper til events tilføjes automatisk-->
-        </div>
-
-        <div class="row">
-            <div id="info" class="col-xs-12">
-                <p>Mail. Telefon. Andre kontaktinformationer</p>
+            <div id="front_event_menu" class="col-xs-3 invisible">
+                <!--Knapper til events tilføjes automatisk-->
             </div>
-        </div>
 
     </div> <!-- /container -->
+    <div class="container">
+        <div id="info" class="col-xs-12">
+            <p>Mail. Telefon. Andre kontaktinformationer</p>
+        </div>
+    </div>
 </body>
 </html>

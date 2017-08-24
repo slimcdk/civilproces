@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .container {
     /*background-color: #00b3ee;*/
     padding: 0;
@@ -10,6 +14,30 @@
     padding: 0;
     margin: 0;
 }
+
+
+.wrapper {
+    background-color: #a6e1ec;
+    min-height: 100%;
+    margin-bottom: -200px;
+}
+
+#info, .wrapper:after {
+    height: 200px;
+}
+
+#info {
+    background-color: orange;
+}
+
+
+
+
+
+
+
+
+
 
 ul {
     list-style-type: none;
@@ -37,11 +65,10 @@ li a, li p {
     background-color: #28a4c9;
 }
 
-#info {
-    background-color: #5cb85c;
-}
-
 #front_event_menu {
     background-color: #c3325f;
     position: absolute;
 }
+
+
+
