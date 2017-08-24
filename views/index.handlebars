@@ -8,11 +8,11 @@
 
 <p>Disse events vil være i højre side af skærmen. Hver knap vil have grundlæggende information om tid og sted.</p>
 
-<ul>
-    <li><a href="/event:1">Event 1</a></li>
-    <li><a href="/event:2">Event 2</a></li>
-    <li><a href="/event:3">Event 3</a></li>
-</ul>
+<div id="event_menu">
+    <ul id="event_menu_list">
+
+    </ul>
+</div>
 
 <br>
 <br>
@@ -21,14 +21,4 @@
 
 <a href="admin">Admin (fjernes)</a>
 
-<script>
-    console.log("yo");
-    $.get('/event:1').then(function(responseData) {
-        //responseData is content from other page.
-        //$('#someElem').append(responseData);
-        //console.log(responseData);
-        console.log(template_to_json(responseData));
-
-        console.log("finished");
-    });
-</script>
+<script src="/js/index.js"></script>
