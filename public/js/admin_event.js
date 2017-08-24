@@ -20,7 +20,6 @@ function readPage(id, handleData) {
     });
 }
 
-
 function drawLists(id) {
     sessionStorage.setItem("adminpage_eventid", id);
     $('#data_insert').find("tr").remove();
@@ -68,7 +67,6 @@ function collectMails (data) {
     return mail_list;
 }
 
-
 function getData(id, handleData) {
     $.ajax({
         type: "GET",
@@ -79,7 +77,6 @@ function getData(id, handleData) {
         }
     });
 }
-
 
 function deleteList(id){
     if(confirm("Er du sikker på, at listen skal slettes?")){
@@ -93,11 +90,10 @@ function deleteList(id){
 
 function removePart(id, participant){
     if(confirm("Er du sikker på, at personen skal afmeldes?")){
-        var data = {id, participant};
         $.ajax({
             type: "POST",
             url: "/remove",
-            data: data,
+            data: {id, participant},
             success: location.reload(true)
         });
     }

@@ -92,7 +92,7 @@ router.post('/check_signup:id', function(req, res){
 
 
 // transmit database content
-router.get('/data:id', gf.ensureAuthenticated, function (req, res) {
+router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
     fs.readdir(views_dir, function(err, data) {
         if (id === 'length'){
