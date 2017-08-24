@@ -36,11 +36,28 @@ function readPage(id, handleData) {
 function eventsReady(events) {
     events = sortEvents(events);
 
-    $( "#front_event_menu" ).append('<ul id="event_menu_list"></ul>');
+    $( "#front_event_menu" ).append('<table id="event_menu_list" border="1"></table>');
 
     for (var i = 0; i < events.length; i++) {
-        console.log(events[i]);
-        $( "#event_menu_list" ).append("<li><a href='/event:" + events[i].index + "'>" + events[i].title + "</a></li>");
+        var box = "";
+        var event = events[i];
+        console.log(event);
+
+        box += "<div class='front_event_box_shell'>"; //dedicated button space
+            box += "<a href='/event:" + event.index + "'>";
+                box += "<div class='front_event_box'>"; //the actual button
+                    box += "<div class='front_event_text_box'>"; //text box
+
+                        box += "<p>" + event.title + "</p>";
+                        box += "<p>" + event.time + "</p>";
+                        box += "<p>" + event.price + "</p>";
+
+                    box += "</div>";
+                box += "</div>";
+            box += "</a>";
+        box += "</div>";
+
+        $( "#event_menu_list" ).append("<tr><td>" + box + "</td></tr>");
     }
 }
 
