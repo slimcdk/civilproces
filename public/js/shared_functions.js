@@ -28,10 +28,24 @@ function template_to_json(text) {
 }
 
 
-window.onbeforeunload = function() {
-    //console.log("saving data..");
-    localStorage.setItem(name, $('#signupform').find('#name').val());
-    localStorage.setItem(name, $('#signupform').find('#email').val());
-    localStorage.setItem(name, $('#signupform').find('#company').val());
-    localStorage.setItem(name, $('#signupform').find('#working_title').val());
+function saveInputValues() {
+    sessionStorage.setItem("name", $('#signupform').find('#name').val());
+    sessionStorage.setItem("email", $('#signupform').find('#email').val());
+    sessionStorage.setItem("company", $('#signupform').find('#company').val());
+    sessionStorage.setItem("working_title", $('#signupform').find('#working_title').val());
+}
+
+window.onload = function() {
+    // If values are not blank, restore them to the fields
+    var name = sessionStorage.getItem('name');
+    if(name !== null || name !== "undefined") $('#signupform').find('#name').val(name);
+
+    var email = sessionStorage.getItem('email');
+    $('#signupform').find('#email').val(email);
+
+    var company = sessionStorage.getItem('company');
+    $('#signupform').find('#company').val(company);
+
+    var working_title = sessionStorage.getItem('working_title');
+    $('#signupform').find('#working_title').val(working_title);
 };

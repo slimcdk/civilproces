@@ -3,14 +3,14 @@ var router = express.Router();
 var fs = require('fs');
 var gf = require('./global_functions.js');
 var event = require('../models/event.js');
-var views_path = "./views/events";
+var views_dir = "./views/events";
 
 
 // Get template for event
 router.get('/event:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
 
-    fs.readdir(views_path, function(err, data) {
+    fs.readdir(views_dir, function(err, data) {
         if (id > 0 && id <= data.length){
             var view_path = "events/event_" + id;
             res.render(view_path);
@@ -35,14 +35,14 @@ router.post('/event:id', function (req, res){
 
             // Validation
             req.checkBody('name', 'Navn er nødvendigt!').notEmpty();
+            req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
+            req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
             req.checkBody('email', 'Email skal udfyldes!').notEmpty();
             req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt!').isEmail();
-            req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
-            req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
 
             req.getValidationResult().then(function(result) {
                 if (!result.isEmpty()) {
-                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. '+result.array()[0].msg);
+                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. ' + result.array()[0].msg);
                     res.redirect('/event:' + id);
                 } else {
                     var newSignup = new event({
@@ -91,7 +91,7 @@ router.post('/check_signup:id', function(req, res){
 // transmit database content
 router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
-    fs.readdir(views_path, function(err, data) {
+    fs.readdir(views_dir, function(err, data) {
         if (id === 'length'){
             res.status(200).send({length: data.length});
         } else if (id > 0 && id <= data.length){
