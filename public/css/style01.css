@@ -10,12 +10,7 @@
     padding: 0;
     margin: 0;
 }
-/*
-#footer {
-    bottom: 0;
-    clear: both;
-}
-*/
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -46,6 +41,7 @@ li a, li p {
     background-color: #5cb85c;
 }
 
-#test {
+#front_event_menu {
     background-color: #c3325f;
+    position: absolute;
 }

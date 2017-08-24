@@ -1,3 +1,8 @@
-#event_menu {
+#front_event_menu {
     background-color: yellow;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
 }

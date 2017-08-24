@@ -36,7 +36,7 @@ function readPage(id, handleData) {
 function eventsReady(events) {
     events = sortEvents(events);
 
-    $( "#event_menu" ).append('<ul id="event_menu_list"></ul>');
+    $( "#front_event_menu" ).append('<ul id="event_menu_list"></ul>');
 
     for (var i = 0; i < events.length; i++) {
         console.log(events[i]);
@@ -58,4 +58,7 @@ function sortEvents(events) {
     return result;
 }
 
-$("#body_box, #top_menu, #info, #test").removeClass("col-xs-12").addClass("col-xs-9");
+$(document).ready(function() {
+    $("#body_box, #top_menu, #info, #test").removeClass("col-xs-12").addClass("col-xs-9");
+    $("#front_event_menu").removeClass("invisible");
+});
