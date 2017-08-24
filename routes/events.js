@@ -26,6 +26,7 @@ router.post('/event:id', function (req, res){
     var id = req.params.id.substring(1, Infinity);
     var name = req.body.name;
     var email = req.body.email;
+    var email_confirm = req.body.email_confirm;
     var working_title = req.body.working_title;
     var company = req.body.company;
 
@@ -38,7 +39,8 @@ router.post('/event:id', function (req, res){
             req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
             req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
             req.checkBody('email', 'Email skal udfyldes!').notEmpty();
-            req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt!').isEmail();
+            req.checkBody('email', 'Tjek venligst at emailen er skrevet rigtigt!').isEmail();
+            req.checkBody('email_confirm', 'Tjek venligst at de to emails er ens').isEmail().equals(email);
 
             req.getValidationResult().then(function(result) {
                 if (!result.isEmpty()) {
@@ -50,7 +52,8 @@ router.post('/event:id', function (req, res){
                         email: email,
                         working_title: working_title,
                         company: company,
-                        event_id: id
+                        event_id: id,
+                        signup_date: Date.now()
                     });
 
                     newSignup.save(function(err){
@@ -89,7 +92,7 @@ router.post('/check_signup:id', function(req, res){
 
 
 // transmit database content
-router.get('/data:id', function (req, res) {
+router.get('/data:id', gf.ensureAuthenticated, function (req, res) {
     var id = req.params.id.substring(1, Infinity);
     fs.readdir(views_dir, function(err, data) {
         if (id === 'length'){
@@ -106,8 +109,8 @@ router.get('/data:id', function (req, res) {
 });
 
 
-// delete content from database
-router.post('/delete:id', function (req, res) {
+// delete whole event from database
+router.post('/delete:id', gf.ensureAuthenticated, function (req, res) {
     var id = req.params.id.substring(1, Infinity);
     event.remove({event_id: id}, function(err){
         if (!err){
@@ -115,6 +118,22 @@ router.post('/delete:id', function (req, res) {
             res.redirect('/admin');
         } else {
             req.flash('error_msg', 'Der opstod en fejl under sletningen');
+            res.redirect('/admin');
+        }
+    });
+});
+
+// delete user from database
+router.post('/remove', gf.ensureAuthenticated, function (req, res) {
+    var id = req.body.id;
+    var participant = req.body.participant;
+
+    event.remove({event_id: id, email: participant}, function(err){
+        if (!err){
+            req.flash('success_msg', 'Personen er nu afmeldt');
+            res.redirect('/admin');
+        } else {
+            req.flash('error_msg', 'Der opstod en fejl under afmeldingen');
             res.redirect('/admin');
         }
     });

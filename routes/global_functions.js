@@ -11,7 +11,6 @@ var fs = require('fs');
 module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){
         if(req.user.is_admin){
-            console.log("admin entered site");
             return next();
         } else {
             req.flash('error_msg','Du har ikke administerende rettigheder til denne side');
@@ -23,11 +22,3 @@ module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next
     }
 };
 
-
-/*
-module.exports.idExists = function idExists (id){
-    fs.readdir("./views/events", function(err, data) {
-        return data.length;
-    });
-};
-*/

@@ -19,19 +19,23 @@
 <form method="post" action="/event:2" id="signupform">
     <div class="form-group">
         <label>Navn</label>
-        <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name">
+        <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name" required>
     </div>
     <div class="form-group">
         <label>Firma</label>
-        <input id="company" type="text" class="form-control" placeholder="Firma" name="company">
+        <input id="company" type="text" class="form-control" placeholder="Firma" name="company" required>
     </div>
     <div class="form-group">
         <label>Titel</label>
-        <input id="working_title" type="text" class="form-control" placeholder="Titel" name="working_title">
+        <input id="working_title" type="text" class="form-control" placeholder="Titel" name="working_title" required>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input id="email" type="email" class="form-control" placeholder="Email" name="email">
+        <input id="email" type="email" class="form-control" placeholder="Email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label>Skriv din Email igen</label>
+        <input id="email_confirm" type="email" class="form-control" placeholder="Email" name="email_confirm" required>
     </div>
     <button type="submit" class="btn btn-default" onclick="saveInputValues()">TILMELD</button>
 </form>

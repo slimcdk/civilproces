@@ -4,7 +4,6 @@
 
 // ask for number of events available and process response
 getData("length", function(response){
-
     for( var i = 1; i <= response.length; i++){
         readPage(i, function(data, id){
             var title = template_to_json(data).title;
@@ -12,7 +11,9 @@ getData("length", function(response){
             $('#event_menu').find("ul").append(output);
         });
     }
+    drawLists(sessionStorage.getItem("adminpage_eventid"));
 });
+
 function readPage(id, handleData) {
     $.get('/event:'+id).then(function(responseData) {
         handleData(responseData, id);
@@ -21,8 +22,10 @@ function readPage(id, handleData) {
 
 
 function drawLists(id) {
+    sessionStorage.setItem("adminpage_eventid", id);
     $('#data_insert').find("tr").remove();
     $('#delete_event_btn').find("button").remove();
+
     getData(id, function(response){
         if(response.length > 0){
             var output = "";
@@ -32,31 +35,36 @@ function drawLists(id) {
                 output += '<td>' + response[i].name + '</td>';
                 output += '<td>' + response[i].company + '</td>';
                 output += '<td>' + response[i].working_title + '</td>';
-                output += '<td class="email_list">' + response[i].email + '</td>';
-                output += "</tr>";
+                output += '<td><a href="mailto:'+response[i].email+'">' + response[i].email + '</a></td>';
+                output += '<td>' + convertTimeNoYear(response[i].signup_date) + '</td>';
+                output += "<td><button class='btn btn-danger' onclick='removePart("+ id + ',' + JSON.stringify(response[i].email) + ")'>Afmeld deltager</button></td>";
+                output += '</tr>';
             }
-            $('#data_insert').append(output);
-            $('#delete_event_btn').append('<button class="btn btn-success" onclick="copyToClipboard('+id+')">Kopiér listen til udklipsholderen</button>');
-            $('#delete_event_btn').append('<button class="btn btn-danger" onclick="deleteList('+id+')">Slet listen til dette event</button>');
-            $('#delete_event_btn').append('<button class="btn btn-default" href="mailto:'+collectMails(response)+'">Send mail til alle</button>');
+            output += '<tr>';
+                output += '<td></td>';
+                output += '<td></td>';
+                output += '<td></td>';
+                output += '<td></td>';
+                output += '<td><a href="mailto:'+collectMails(response)+'"><b>Send mail til alle</b></a></td>';
+                output += '<td></td>';
+                output += '<td><button class="btn btn-danger" onclick="deleteList('+id+')">Slet listen til dette event</button></td>';
+            output += '</tr>';
 
+            $('#data_insert').append(output);
+            //$('#delete_event_btn').append('<button class="btn btn-danger" onclick="deleteList('+id+')">Slet listen til dette event</button>');
         } else {
             $('#data_insert').append('<tr><td><b>Der er ingen tilmeldte på nuværende tidspunkt</b></td></td>');
-            //$('#event_table').remove();
         }
     });
 }
 
 function collectMails (data) {
-    console.log("data ",data);
     var mail_list = "";
-
     for(var i = 0; i < data.length; i++){
         mail_list += data[i].email;
         mail_list += ",";
     }
     mail_list = mail_list.substring(0, mail_list.length - 1);
-    console.log(mail_list);
     return mail_list;
 }
 
@@ -78,6 +86,18 @@ function deleteList(id){
         $.ajax({
             type: "POST",
             url: "/delete:" + id,
+            success: location.reload(true)
+        });
+    }
+}
+
+function removePart(id, participant){
+    if(confirm("Er du sikker på, at personen skal afmeldes?")){
+        var data = {id, participant};
+        $.ajax({
+            type: "POST",
+            url: "/remove",
+            data: data,
             success: location.reload(true)
         });
     }

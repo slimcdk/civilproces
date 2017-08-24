@@ -19,6 +19,9 @@ var eventSchema = mongoose.Schema({
 	event_id: {
 		type: Number,
         index:true
+	},
+	signup_date: {
+		type: Date
 	}
 });
 
