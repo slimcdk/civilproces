@@ -2,7 +2,8 @@
     "title": "Århus universitet",
     "tidspunkt": "20. Januar 18.50",
     "pris": "12.000",
-    "Author": "Sebastian"
+    "author": "Sebastian",
+    "index": 1
 </template>
 
 
@@ -40,22 +41,22 @@
 
 <h2>TILMELD</h2>
 
-<form method="post" action="/event:1">
+<form method="post" action="/event:1" id="signupform">
     <div class="form-group">
         <label>Navn</label>
-        <input type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name" required>
+        <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name">
     </div>
     <div class="form-group">
         <label>Firma</label>
-        <input type="text" class="form-control" placeholder="Firma" name="company" required>
+        <input id="company" type="text" class="form-control" placeholder="Firma" name="company">
     </div>
     <div class="form-group">
         <label>Titel</label>
-        <input type="text" class="form-control" placeholder="Titel" name="working_title" required>
+        <input id="working_title" type="text" class="form-control" placeholder="Titel" name="working_title">
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input type="email" class="form-control" placeholder="Email" name="email" required>
+        <input id="email" type="email" class="form-control" placeholder="Email" name="email">
     </div>
     <button type="submit" class="btn btn-default">TILMELD</button>
 </form>

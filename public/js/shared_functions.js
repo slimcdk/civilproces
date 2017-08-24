@@ -27,3 +27,11 @@ function template_to_json(text) {
     return result;
 }
 
+
+window.onbeforeunload = function() {
+    //console.log("saving data..");
+    localStorage.setItem(name, $('#signupform').find('#name').val());
+    localStorage.setItem(name, $('#signupform').find('#email').val());
+    localStorage.setItem(name, $('#signupform').find('#company').val());
+    localStorage.setItem(name, $('#signupform').find('#working_title').val());
+};

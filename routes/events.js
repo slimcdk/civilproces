@@ -34,15 +34,15 @@ router.post('/event:id', function (req, res){
         if (data.length === 0) {
 
             // Validation
-            req.checkBody('name', 'Navn er nødvendigt').notEmpty();
-            req.checkBody('email', 'Email skal udfyldes').notEmpty();
-            req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt').isEmail();
-            req.checkBody('working_title', 'Udfyld venligst din arbejdstitel').notEmpty();
-            req.checkBody('company', 'Udfyld venligst din arbejdsplads').notEmpty();
+            req.checkBody('name', 'Navn er nødvendigt!').notEmpty();
+            req.checkBody('email', 'Email skal udfyldes!').notEmpty();
+            req.checkBody('email', 'Tjek venligst at Emailen er skrevet rigtigt!').isEmail();
+            req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
+            req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
 
             req.getValidationResult().then(function(result) {
                 if (!result.isEmpty()) {
-                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. Tjek venligst at E-mailen er indtastet korrekt');
+                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. '+result.array()[0].msg);
                     res.redirect('/event:' + id);
                 } else {
                     var newSignup = new event({

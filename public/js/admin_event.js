@@ -2,26 +2,25 @@
  * Created by chris on 18-08-2017.
  */
 
-function createTaps(){
-    getData("length", function(response){
-        var output = "";
-        for(i = 1; i <= response.length; i++) {
-            output += '<li><a onclick="drawLists('+i+')">Event '+i+'</a></li>';
-        }
-        $('#event_menu').find("ul").append(output);
+// ask for number of events available and process response
+getData("length", function(response){
+
+    for(i = 1; i <= response.length; i++){
+        readPage(i, function(data, id){
+            var title = template_to_json(data).title;
+            var output = '<li><a onclick="drawLists('+id+')">'+id+') Event <b>'+title+'</b></a></li>';
+            $('#event_menu').find("ul").append(output);
+            console.log(template_to_json(data).title);
+        });
+    }
+});
+
+function readPage(id, handleData) {
+    $.get('/event:'+id).then(function(responseData) {
+        handleData(responseData, id);
     });
 }
 
-function getData(id, handleData) {
-    $.ajax({
-        type: "GET",
-        url: "/data:" + id,
-        dataType: 'json',
-        success:function(data) {
-            handleData(data);
-        }
-    });
-}
 
 function drawLists(id) {
     $('#data_insert').find("tr").remove();
@@ -39,7 +38,6 @@ function drawLists(id) {
                 output += "</tr>";
             }
             $('#data_insert').append(output);
-            // $('#delete_event_btn').find("button").removeClass("disabled");
             $('#delete_event_btn').append('<button class="btn btn-danger" onclick="deleteList('+id+')">Slet listen til dette event</button>');
         } else {
             alert("Der er ingen tilmeldte til dette event");
@@ -47,11 +45,25 @@ function drawLists(id) {
     });
 }
 
+
+function getData(id, handleData) {
+    $.ajax({
+        type: "GET",
+        url: "/data:" + id,
+        dataType: 'json',
+        success:function(data) {
+            handleData(data);
+        }
+    });
+}
+
+
 function deleteList(id){
     if(confirm("Er du sikker på, at listen til event "+id+" skal slettes")){
         $.ajax({
             type: "POST",
-            url: "/delete:" + id
+            url: "/delete:" + id,
+            success: location.reload(true)
         });
     }
 }
