@@ -6,7 +6,9 @@
 //string.charCodeAt(2)  = 108
 //string.trim()
 
-function template_to_json(text) {
+function template_to_json(text){
+    var result = JSON.parse($(text).find("template").html());
+    /*
     var i;
     var temp = text.slice(text.indexOf("<template>") + 12, text.indexOf("</template>") - 1);
 
@@ -23,7 +25,7 @@ function template_to_json(text) {
     result += "}";
 
     result = JSON.parse(result);
-
+    */
     return result;
 }
 

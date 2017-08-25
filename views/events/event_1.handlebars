@@ -1,13 +1,21 @@
 <template>
+    {
     "title": "Århus universitet",
     "time": "20. Januar 18.50",
     "price": "12.000",
+    "seats_available": 56,
     "index": 1
+    }
 </template>
 
 
+<h1 id="heading"></h1>
+<h4 id="price"></h4>
+<h4 id="time_date"></h4>
+<h4 id="seats"></h4>
 
-<h1>Event 1</h1>
+<hr>
+
 
 <p>Denne side indeholder en beskrivelse af event_1.</p>
 
@@ -39,7 +47,7 @@
 
 <h2>TILMELD</h2>
 
-<form method="post" action="/event:1" id="signupform">
+<form method="post" action="/event:" id="signupform">
     <div class="form-group">
         <label>Navn</label>
         <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name" required>
@@ -66,7 +74,7 @@
 
 <hr>
 <h2>TJEK DIN TILMELDING</h2>
-<form method="post" action="/check_signup:1">
+<form method="post" action="/check_signup:">
     <div class="form-group">
         <label>Email</label>
         <input type="email" class="form-control" placeholder="Email" name="email" required>
@@ -74,3 +82,4 @@
     <button type="submit" class="btn btn-default">TJEK TILMELDING</button>
 </form>
 
+<script rel="javascript" src="/js/event.js"></script>

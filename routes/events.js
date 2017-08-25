@@ -94,14 +94,23 @@ router.post('/check_signup:id', function(req, res){
 // transmit database content
 router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
+
     fs.readdir(views_dir, function(err, data) {
         if (id === 'length'){
             res.status(200).send({length: data.length});
+
+        } else if (id.substring(0, "part_length".length) === "part_length") {
+            id = id.substring("part_length".length, Infinity);
+            event.find({event_id: id},{__v:0}, function(err, data){
+                res.status(200).send({"length": data.length});
+            });
+
         } else if (id > 0 && id <= data.length){
             event.find({event_id: id},{__v:0, _id:0}, function(err, data){
                 if(err) throw err;
                 res.status(200).send(data);
             });
+
         } else {
             res.status(404).send(null);
         }
