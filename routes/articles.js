@@ -1,14 +1,24 @@
 var express = require('express');
 var router = express.Router();
 
-// Get article 01
-router.get('/01', function (req, res) {
-    res.render('blog/article_01');
-});
+var fs = require('fs');
+var blog_dir = "./views/blog";
 
-// Get article 02
-router.get('/02', function (req, res) {
-    res.render('blog/article_02');
+
+
+
+
+
+// transmit database content
+router.get('/data:id', function (req, res) {
+    var id = req.params.id.substring(1, Infinity);
+    fs.readdir(blog_dir, function(err, data) {
+        if (id === 'length'){
+            res.status(200).send({length: data.length});
+        } else {
+            res.status(404).send(null);
+        }
+    });
 });
 
 module.exports = router;
