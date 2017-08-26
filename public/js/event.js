@@ -1,10 +1,9 @@
-
+var data = JSON.parse($("template").html());
 
 window.onload = function(){
-    var data = JSON.parse($("template").html());
 
     $("form").each(function(){
-        $(this).attr("action", $(this).attr("action")+data.index);
+        $(this).attr("action", $(this).attr("action") + data.index);
     });
 
     getData("part_length"+data.index, function(response){
@@ -14,18 +13,23 @@ window.onload = function(){
         $("#price").text("Pris: " + data.price + " DKK");
         $("#time_date").text("Dato: " + data.time);
         $("#seats").text("Pladser tilbage: " + free_seats + " ud af " + data.seats_available);
-
     });
+
+
+
+    $('#signupform').find('#name').val(sessionStorage.getItem(data.index + "_name"));
+    $('#signupform').find('#email').val(sessionStorage.getItem(data.index + "_email"));
+    $('#signupform').find('#email_confirm').val(sessionStorage.getItem(data.index + "_email_confirm"));
+    $('#signupform').find('#company').val(sessionStorage.getItem(data.index + "_company"));
+    $('#signupform').find('#working_title').val(sessionStorage.getItem(data.index + "_working_title"));
 };
 
 
-function getData(id, handleData) {
-    $.ajax({
-        type: "GET",
-        url: "/data:" + id,
-        dataType: 'json',
-        success: function(data) {
-            handleData(data);
-        }
-    });
+// save values from input fields
+function saveInputValues() {
+    sessionStorage.setItem(data.index + "_name", $('#signupform').find('#name').val());
+    sessionStorage.setItem(data.index + "_email", $('#signupform').find('#email').val());
+    sessionStorage.setItem(data.index + "_email_confirm", $('#signupform').find('#email_confirm').val());
+    sessionStorage.setItem(data.index + "_company", $('#signupform').find('#company').val());
+    sessionStorage.setItem(data.index + "_working_title", $('#signupform').find('#working_title').val());
 }

@@ -21,13 +21,3 @@ module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next
         res.redirect('/login');
     }
 };
-
-module.exports.checkID = function checkID(id){
-
-    var check_type = parseInt(id);
-
-    console.log("id",id);
-    console.log("length",id.length);
-    console.log("int",check_type);
-
-};

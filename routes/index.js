@@ -15,20 +15,20 @@ router.get('/blog:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
 
     if (id.length === 1){
-        res.redirect('/blog:0' + id);
-    } else {
-        fs.readdir(blog_dir, function(err, data) {
-            if (err) throw err;
-            if (id > 0 && id <= data.length && id.length === 2){
-                var view_path = "blog/article_" + id;
-                res.render(view_path);
-            } else if (id === "length") {
-                res.status(200).send({length: data.length});
-            } else {
-                res.status(404).render('layouts/error_404');
-            }
-        });
+        id = "0" + id;
     }
+
+    fs.readdir(blog_dir, function(err, data) {
+        if (err) throw err;
+        if (id > 0 && id <= data.length && id.length === 2){
+            var view_path = "blog/article_" + id;
+            res.render(view_path);
+        } else if (id === "length") {
+            res.status(200).send({length: data.length});
+        } else {
+            res.status(404).render('layouts/error_404');
+        }
+    });
 });
 
 

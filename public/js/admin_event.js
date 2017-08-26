@@ -2,23 +2,33 @@
  * Created by chris on 18-08-2017.
  */
 
-// ask for number of events available and process response
 getData("length", function(response){
-    for( var i = 1; i <= response.length; i++){
-        readPage(i, function(data, id){
-            var title = template_to_json(data).title;
-            var output = '<li><a onclick="drawLists('+id+')"><b>'+title+'</b></a></li>';
-            $('#event_menu').find("ul").append(output);
+    var events = [];
+
+    for(var i = 1; i <= response.length; i++){
+        readPage(i, function(data){
+            events.push(template_to_json(data));
+
+            if (events.length === response.length) {
+                drawTaps(events);
+            }
         });
     }
-    drawLists(sessionStorage.getItem("adminpage_eventid"));
 });
 
-function readPage(id, handleData) {
-    $.get('/event:'+id).then(function(responseData) {
-        handleData(responseData, id);
-    });
+
+function drawTaps(events) {
+    events = sortEvents(events);
+    for(var i = 0; i < events.length; i++){
+        var title = events[i].title;
+        var id = events[i].index;
+
+        var output = '<li><a onclick="drawLists('+id+')"><b>'+ id +') '  + title+'</b></a></li>';
+        $('#event_menu').find("ul").append(output);
+    }
+    drawLists(sessionStorage.getItem("adminpage_eventid"));
 }
+
 
 function drawLists(id) {
     sessionStorage.setItem("adminpage_eventid", id);
@@ -67,16 +77,6 @@ function collectMails (data) {
     return mail_list;
 }
 
-function getData(id, handleData) {
-    $.ajax({
-        type: "GET",
-        url: "/data:" + id,
-        dataType: 'json',
-        success: function(data) {
-            handleData(data);
-        }
-    });
-}
 
 function deleteList(id){
     if(confirm("Er du sikker på, at listen skal slettes?")){
