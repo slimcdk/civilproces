@@ -36,43 +36,51 @@ router.post('/event:id', function (req, res){
     var email_confirm = req.body.email_confirm;
     var working_title = req.body.working_title;
     var company = req.body.company;
+    var seats_available = req.body.seats_available;
 
-    event.find({email: email, event_id: id},{__v:0}, function(err, data) {
-        if (err) throw err;
-        if (data.length === 0) {
+    event.find({event_id: id}, function(err, data){
+        if(data.length < seats_available){
+            event.find({email: email, event_id: id}, function(err, data) {
+                if (err) throw err;
+                if (data.length === 0) {
 
-            // Validation
-            req.checkBody('name', 'Navn er nødvendigt!').notEmpty();
-            req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
-            req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
-            req.checkBody('email', 'Email skal udfyldes!').notEmpty();
-            req.checkBody('email', 'Tjek venligst at emailen er skrevet rigtigt!').isEmail();
-            req.checkBody('email_confirm', 'Tjek venligst at de to emails er ens').isEmail().equals(email);
+                    // Validation
+                    req.checkBody('name', 'Navn er nødvendigt!').notEmpty();
+                    req.checkBody('company', 'Udfyld venligst din arbejdsplads!').notEmpty();
+                    req.checkBody('working_title', 'Udfyld venligst din arbejdstitel!').notEmpty();
+                    req.checkBody('email', 'Email skal udfyldes!').notEmpty();
+                    req.checkBody('email', 'Tjek venligst at emailen er skrevet rigtigt!').isEmail();
+                    req.checkBody('email_confirm', 'Tjek venligst at de to emails er ens').isEmail().equals(email);
 
-            req.getValidationResult().then(function(result) {
-                if (!result.isEmpty()) {
-                    req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. ' + result.array()[0].msg);
-                    res.redirect('back');
+                    req.getValidationResult().then(function(result) {
+                        if (!result.isEmpty()) {
+                            req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. ' + result.array()[0].msg);
+                            res.redirect('back');
+                        } else {
+                            var newSignup = new event({
+                                name: name,
+                                email: email,
+                                working_title: working_title,
+                                company: company,
+                                event_id: id,
+                                signup_date: Date.now()
+                            });
+
+                            newSignup.save(function(err){
+                                if(err) throw err;
+                                req.flash('success_msg', 'Du er nu tilmeldt');
+                                res.redirect('back');
+                            });
+                        }
+                    });
                 } else {
-                    var newSignup = new event({
-                        name: name,
-                        email: email,
-                        working_title: working_title,
-                        company: company,
-                        event_id: id,
-                        signup_date: Date.now()
-                    });
-
-                    newSignup.save(function(err){
-                        if(err) throw err;
-                        req.flash('success_msg', 'Du er nu tilmeldt');
-                        res.redirect('back');
-                    });
+                    req.flash('error_msg', 'Den indtastede email er allerde tilmeldt dette event');
+                    res.redirect('back');
                 }
             });
         } else {
-            req.flash('error_msg', 'Den indtastede email er allerde tilmeldt dette event');
-            res.redirect('back');
+            req.flash("error_msg", "Der er desværre ikke flere ledige pladser");
+            res.redirect("back");
         }
     });
 });
@@ -111,19 +119,18 @@ router.post('/check_signup:id', function(req, res){
 // transmit database content
 router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
-
     fs.readdir(views_dir, function(err, data) {
         if (id === 'length'){
             res.status(200).send({length: data.length});
 
         } else if (id.substring(0, "part_length".length) === "part_length") {
             id = id.substring("part_length".length, Infinity);
-            event.find({event_id: id},{__v:0}, function(err, data){
+            event.find({event_id: id}, function(err, data){
                 res.status(200).send({"length": data.length});
             });
 
         } else if (id > 0 && id <= data.length){
-            event.find({event_id: id},{__v:0}, function(err, data){
+            event.find({event_id: id},{__v:0, _id:0}, function(err, data){
                 if(err) throw err;
                 res.status(200).send(data);
             });

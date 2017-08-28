@@ -15,15 +15,12 @@ window.onload = function(){
         $("#seats").text("Pladser tilbage: " + free_seats + " ud af " + data.seats_available);
     });
 
-
-
     $('#signupform').find('#name').val(sessionStorage.getItem(data.index + "_name"));
     $('#signupform').find('#email').val(sessionStorage.getItem(data.index + "_email"));
     $('#signupform').find('#email_confirm').val(sessionStorage.getItem(data.index + "_email_confirm"));
     $('#signupform').find('#company').val(sessionStorage.getItem(data.index + "_company"));
     $('#signupform').find('#working_title').val(sessionStorage.getItem(data.index + "_working_title"));
 };
-
 
 // save values from input fields
 function saveInputValues() {
@@ -32,4 +29,10 @@ function saveInputValues() {
     sessionStorage.setItem(data.index + "_email_confirm", $('#signupform').find('#email_confirm').val());
     sessionStorage.setItem(data.index + "_company", $('#signupform').find('#company').val());
     sessionStorage.setItem(data.index + "_working_title", $('#signupform').find('#working_title').val());
+
+    $('#signupform').append(
+        "<div class='form-group hidden'>" +
+        "<input id='seats_available' type='number' class='form-control' value='"+ data.seats_available +"' name='seats_available'>" +
+        "</div>"
+    );
 }
