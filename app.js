@@ -89,6 +89,6 @@ app.use("*", function (req, res) {
 // Set Port
 app.set('port', (process.env.PORT || 3000));
 
-app.listen(app.get('port'), function(){
+app.listen(app.get('port'), "0.0.0.0", function(){
 	console.log('Server started on port '+app.get('port'));
 });
