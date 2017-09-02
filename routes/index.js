@@ -42,7 +42,13 @@ router.get('/blog', function(req, res){
 
 // Get about
 router.get('/about', function (req, res) {
-    res.render('about', {title: "About"});
+    res.render('about', {title: "Omkring"});
+});
+
+
+// Get about
+router.get('/contact', function (req, res) {
+    res.render('contact', {title: "Kontakt"});
 });
 
 

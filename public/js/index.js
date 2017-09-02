@@ -16,7 +16,7 @@ getData("length", function(response){
     }
 });
 
-
+/*
 function eventsReady(events) {
     events = sortEvents(events);
 
@@ -44,9 +44,9 @@ function eventsReady(events) {
         $( "#event_menu_list" ).append("<tr><td>" + box + "</td></tr>");
     }
 }
-
-
+*/
+/*
 $(document).ready(function() {
-    $("#body_box, #top_menu, #info, #test").removeClass("col-xs-12").addClass("col-xs-9");
-    $("#front_event_menu").removeClass("invisible");
-});
+    $("#body_box, #top_menu, #info").removeClass("col-md-12").addClass("col-md-9");
+    //$("#front_event_menu").removeClass("invisible");
+});*/

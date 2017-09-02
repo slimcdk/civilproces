@@ -1,0 +1,101 @@
+.row {
+    background-color: #a6e1ec;
+    margin-bottom: 10px;
+}
+
+.navbar { /*navbar block*/
+    background-color: #e7c3c3;
+    opacity: 0.9;
+}
+
+.navbar .navbar-brand { /*name*/
+    color: black;
+}
+
+.navbar .navbar-brand:hover, /*name hover*/
+.navbar .navbar-brand:focus {
+    color: yellow;
+}
+
+.navbar .navbar-text {
+    color: red;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: purple;
+    border-radius: 0.25rem;
+    margin: 0 0.25em;
+}
+
+.navbar .navbar-toggle { /*line around dropdown-button*/
+    border-color: #c0392b;
+}
+
+.navbar .navbar-toggle:hover, /*dropdown-button*/
+.navbar .navbar-toggle:focus {
+    background-color: #c0392b;
+}
+
+.navbar .navbar-toggle .navbar-toggler-icon {
+    color: gold;
+}
+
+.navbar .navbar-collapse, /*line bewteen dropdown and fixed-top*/
+.navbar .navbar-form {
+    border-color: lime;
+}
+
+.navbar .navbar-link {
+    color: darkblue;
+}
+
+.navbar .navbar-link:hover {
+    color: palevioletred;
+}
+/*
+@media (max-width: 575px) {
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ecf0f1;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ffbbbc;
+    }
+    .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ffbbbc;
+        background-color: #c0392b;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #ecf0f1;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #ffbbbc;
+    }
+    .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #ffbbbc;
+        background-color: #c0392b;
+    }
+}*/
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: darkred;
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: deeppink;
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #5cb85c;
+    background-color: #c0392b;
+}
+
+.navbar {
+    position: fixed;
+    width: 80%;
+}
