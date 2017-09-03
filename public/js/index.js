@@ -1,6 +1,3 @@
-/**
- * Created by ste on 24-08-2017.
- */
 
 getData("length", function(response){
     var events = [];
@@ -15,6 +12,60 @@ getData("length", function(response){
         });
     }
 });
+
+
+
+$(document).ready(function() {
+    $("#body_box, #top-menu-box, #info").removeClass("col-md-12").addClass("col-md-9");
+    $("#index-event-box-right").removeClass("hidden-md hidden-lg");
+});
+
+
+
+function eventsReady(events) {
+    var eventlist = sortEvents(events);
+    console.log(eventlist);
+    $("#index-event-box-right").html('<table id="index-event-table" border="1"></table>');
+
+
+
+
+    for (var i = 0; i < eventlist.length; i++) {
+        console.log(eventlist[i]);
+        var event = eventlist[i];
+        var box = "";
+
+
+        var test = 'location.href="/event:' + event.index + '"';
+
+        box += "<button class='draw' onclick='" + test + "'>";
+
+        box += "<div>";
+        box += "<h3>" + event.title + "</h3>";
+        box += "<h3>" + event.time + "</h3>";
+        box += "<h3>" + event.price + "</h3>";
+        box += "</div>";
+
+        box += "</button>";
+
+
+        $( "#index-event-table" ).append("<tr><td>" + box + "</td></tr>");
+    }
+
+
+
+
+
+
+
+    $("#index-event-box-right").addClass("onPage");
+}
+
+
+
+
+
+
 
 /*
 function eventsReady(events) {

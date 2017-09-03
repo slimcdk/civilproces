@@ -15,65 +15,19 @@ html, body {
     margin: 0;
 }
 
-
-
-
-
-
-
-.navbar { /*navbar box*/
-    position: fixed;
-    width: 100%;
-    min-width: 200px;
-    background:none;
-    z-index: 1;
-    transition:0.8s;
+.wrapper {
+    background-color: #a6e1ec;
+    min-height: 100%;
+    margin-bottom: -200px;
 }
 
-.top-nav-scroll {
-    /*background-color: orangered;
-    opacity: 0.8;*/
-    /*background-color:rgba(255,0,0,0.8);*/
-    background: rgba(255, 0, 0, 0.8);
+#info, .wrapper:after {
+    height: 200px;
 }
 
-.navbar .navbar-brand { /*name*/
-    color: white;
+#info {
+    background-color: orange;
 }
-
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus { /*name hover*/
-    color: gray;
-}
-
-.navbar .navbar-toggle { /*border around dropdown button*/
-    border-color: white;
-}
-
-.navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:focus { /*dropdown button*/
-    background-color: white;
-}
-
-.navbar .navbar-collapse,
-.navbar .navbar-form { /*line between fixed-bar and dropdown menu*/
-    border-color: gray;
-}
-
-.navbar .icon-bar { /*lines in button*/
-    background-color: gray;
-}
-
-.navbar .nav a { /*link text*/
-    color: #c3325f;
-    text-align: center;
-}
-
-.navbar .nav a:hover, .navbar .nav a:focus { /*link text hover*/
-    background-color: greenyellow;
-}
-
-
 
 
 
