@@ -18,11 +18,11 @@ html, body {
 .wrapper {
     background-color: #a6e1ec;
     min-height: 100%;
-    margin-bottom: -200px;
+    margin-bottom: -40px;
 }
 
 #info, .wrapper:after {
-    height: 200px;
+    height: 40px;
 }
 
 #info {

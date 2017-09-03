@@ -23,7 +23,15 @@
 
 
 
+.event-btn-box {
+    background-color: #5cb85c;
 
+    padding: 0;
+}
+
+#index-event-box-bottom {
+    padding: 0;
+}
 
 
 
@@ -31,7 +39,9 @@
 
 /*button*/
 .draw {
-    background: black;
+    background: none;
+    /*background: black;*/
+
     border: 0;
     box-sizing: border-box;
 
