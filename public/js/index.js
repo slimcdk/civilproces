@@ -26,7 +26,7 @@ $(document).ready(function() {
 function eventsReady(events) {
     var eventlist = sortEvents(events);
     console.log(eventlist);
-    $("#index-event-box-right").html('<table id="index-event-table" border="1"></table>');
+    $("#index-event-box-right").html('<table id="index-event-table" border="0"></table>');
     $("#index-event-box-bottom").html('');
 
 

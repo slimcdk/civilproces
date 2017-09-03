@@ -1,14 +1,9 @@
 
 #index-event-box-right {
-    background-color: yellow;
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
-    padding: 0;
-    transition:0.8s;
-    opacity: 0;
-
     overflow-y: auto;
 }
 
@@ -17,29 +12,23 @@
     height: 100%;
 }
 
-#index-event-box-right.onPage {
-    opacity: 1;
-}
-
-
-
-
-
-.event-btn-box {
-    background-color: #5cb85c;
-
-    padding: 0;
-}
-
-#index-event-box-bottom {
-    padding: 0;
-    opacity: 0;
-    transition:0.8s;
-}
-
+#index-event-box-right.onPage,
 #index-event-box-bottom.onPage {
     opacity: 1;
 }
+
+#index-event-box-right,
+#index-event-box-bottom {
+    background-color: yellow;
+    opacity: 0;
+    padding: 0;
+    transition:0.8s;
+}
+
+.event-btn-box {
+    padding: 0;
+}
+
 
 
 
