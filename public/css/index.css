@@ -8,6 +8,8 @@
     padding: 0;
     transition:0.8s;
     opacity: 0;
+
+    overflow-y: auto;
 }
 
 #index-event-table {
@@ -31,8 +33,13 @@
 
 #index-event-box-bottom {
     padding: 0;
+    opacity: 0;
+    transition:0.8s;
 }
 
+#index-event-box-bottom.onPage {
+    opacity: 1;
+}
 
 
 
