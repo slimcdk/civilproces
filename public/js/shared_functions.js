@@ -80,3 +80,9 @@ function readPage(id, handleData) {
         handleData(responseData);
     });
 }
+
+function readPost(id, handleData) {
+    $.get('/blog:'+id).then(function(responseData) {
+        handleData(responseData);
+    });
+}
