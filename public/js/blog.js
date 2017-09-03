@@ -1,22 +1,35 @@
 
 $.get('/blog:length').then(function(responseData) {
-    console.log(responseData);
-
     for(var i = 1; i <= responseData.length; i++){
-        console.log(i);
-
         readPost(i, function(data){
-            console.log(template_to_json(data));
+            createFrontPost(template_to_json(data));
         });
     }
 });
 
+function createFrontPost(post) {
+    console.log(post);
+    var box = "";
+    var thisPost = "post_" + post.index;
+    var thisImg = "img_" + post.index;
 
+    box += "<div class='post-image-box'>";
+    box += "<img src='/image/blog/front/" + post.image + "' alt='some_text' id='" + thisImg + "'>";
 
+    box += "<div class='post-headline'>";
+    box += "<h2>" + post.title + "</h2>";
+    box += "</div>";
 
+    box += "</div>";
 
+    box += "<div class='post-text-box'>";
+    box += "<p>" + post.subtitle + "</p>";
+    box += "</div>";
 
+    $("#post-pool").append("<div id='" + thisPost + "' class='post-shell col-xs-12 col-sm-6 col-md-4 col-lg-3'><div class='post-block'>" + box + "</div></div>");
 
-
-
+    $("#" + thisImg).on('load', function(){
+        $("#" + thisPost).addClass("onPage");
+    });
+}
 

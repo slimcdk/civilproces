@@ -29,9 +29,8 @@ html, body {
     background-color: orange;
 }
 
-
-
 #body_box {
+    padding: 0;
     padding-top: 50px;
     background-color: #c1e2b3;
 }
