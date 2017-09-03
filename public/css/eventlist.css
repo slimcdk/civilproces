@@ -19,7 +19,7 @@
 
 #index-event-box-right,
 #index-event-box-bottom {
-    background-color: yellow;
+    background-color: #202020;
     opacity: 0;
     padding: 0;
     transition:0.8s;
@@ -41,8 +41,8 @@
     border: 0;
     box-sizing: border-box;
 
-    box-shadow: blue;
-    color: red; /*text color*/
+    box-shadow: none;
+    color: lightgray; /*text color*/
     font-size: inherit;
     font-weight: 700;
 
@@ -83,7 +83,7 @@
 }
 
 .draw:hover {
-    color: cyan;
+    color: white;
 }
 
 .draw:hover::before,
@@ -93,16 +93,16 @@
 }
 
 .draw:hover::before {
-    border-top-color: cyan;
-    border-right-color: cyan;
+    border-top-color: gold;
+    border-right-color: gold;
     transition:
             width 0.25s ease-out,
             height 0.25s ease-out 0.25s;
 }
 
 .draw:hover::after {
-    border-bottom-color: cyan;
-    border-left-color: cyan;
+    border-bottom-color: gold;
+    border-left-color: gold;
     transition:
             border-color 0s ease-out 0.5s,
             width 0.25s ease-out 0.5s,

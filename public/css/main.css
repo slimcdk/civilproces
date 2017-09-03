@@ -28,7 +28,9 @@ html, body {
 #info {
     /*background-color: #763626;*/
     /*background-color: #00293C;*/
-    background-color: #335252;
+    /*background-color: #335252;*/
+    background-color: #00293C;
+    /*background: rgba(0, 41, 60, 0.9);*/
 }
 
 #body_box {
@@ -39,15 +41,49 @@ html, body {
 }
 
 
-p, h1, h2, h3, h4, h5, h6 {
+
+
+#body_box p, #body_box h1, #body_box h2, #body_box h3, #body_box h4, #body_box h5, #body_box h6 {
     color: white;
     /*color: #C29545;*/
 }
 
-a:link, a:visited, a:hover, a:active {
+#body_box a:link, #body_box a:visited, #body_box a:hover, #body_box a:active {
     color: goldenrod;
     text-decoration: none;
 }
 
 
 
+
+.page-background {
+    /*position: absolute;*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.page-table-div {
+    width: 100%;
+    height: 100%;
+}
+
+.page-table-div table {
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.2;
+}
+
+.page-table-div table td {
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+}
+
+.page-table-div table .page-table-left {
+    border-left: none;
+}
+
+.page-table-div table .page-table-right {
+    border-right: none;
+}
