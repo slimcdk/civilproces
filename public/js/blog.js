@@ -9,7 +9,7 @@ $.get('/blog:length').then(function(responseData) {
 });
 
 function createFrontPost(post) {
-    console.log(post);
+    //console.log(post);
     var box = "";
     var thisPost = "post_" + post.index;
     var thisImg = "img_" + post.index;

@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 
-.container {
+.container, .container-fluid {
     /*background-color: #00b3ee;*/
     padding: 0;
     margin: 0;
@@ -16,7 +16,7 @@ html, body {
 }
 
 .wrapper {
-    background-color: #a6e1ec;
+    background-color: #2D3033;
     min-height: 100%;
     margin-bottom: -40px;
 }
@@ -26,17 +26,28 @@ html, body {
 }
 
 #info {
-    background-color: orange;
+    /*background-color: #763626;*/
+    /*background-color: #00293C;*/
+    background-color: #335252;
 }
 
 #body_box {
     padding: 0;
-    padding-top: 50px;
-    background-color: #c1e2b3;
+    margin: 0;
+    margin-top: 70px;
+    /*background-color: #c1e2b3;*/
 }
 
 
+p, h1, h2, h3, h4, h5, h6 {
+    color: white;
+    /*color: #C29545;*/
+}
 
+a:link, a:visited, a:hover, a:active {
+    color: goldenrod;
+    text-decoration: none;
+}
 
 
 

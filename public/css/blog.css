@@ -16,8 +16,12 @@
 
 .post-block {
     width: 100%;
-    background-color: #d9534f;
     height: 100%;
+    /*background-color: #90AFC5;*/
+    /*background-color: #2C4A52;*/
+    background-color: #537072;
+
+    /*background-color: #8E9B97;*/
 }
 
 .post-image-box {
@@ -66,7 +70,7 @@ a:hover .post-image-box img {
 
 .post-text-box {
     height: 28%;
-    background-color: #269abc;
+    /*background-color: #269abc;*/
     color: white;
 
     padding: 0 10px;

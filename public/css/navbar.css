@@ -1,35 +1,44 @@
 .navbar { /*navbar box*/
     position: fixed;
     width: 100%;
-    min-width: 200px;
+    min-width: 300px;
     background:none;
     z-index: 1;
     transition:0.8s;
 }
 
 .top-nav-scroll {
-    /*background-color: orangered;
-    opacity: 0.8;*/
-    /*background-color:rgba(255,0,0,0.8);*/
-    background: rgba(255, 0, 0, 0.8);
+    opacity: 0.8;
+
+    /*background: rgba(51, 107, 135, 0.8);*/
+    /*background: rgba(45, 66, 98, 0.9);*/
+    background: rgba(0, 41, 60, 0.9);
 }
 
-.navbar .navbar-brand { /*name*/
+.navbar .navbar-brand h2 { /*name*/
     color: white;
     padding: 0;
+    margin: 0;
+
+    height: 70px;
+    /*padding-left: 20px;*/
+    text-shadow: none;
+
+    transition: 0.2s;
 }
 
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus { /*name hover*/
-    color: gray;
+.navbar .navbar-brand:hover h2,
+.navbar .navbar-brand:focus h2 { /*name hover*/
+    color: gold;
 }
 
-.navbar .navbar-toggle { /*border around dropdown button*/
-    border-color: white;
+.navbar .navbar-toggle { /*dropdown button*/
+    border-color: red;
+    /*padding: 16px;*/
 }
 
 .navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:focus { /*dropdown button*/
+.navbar .navbar-toggle:focus { /*dropdown button hover*/
     background-color: white;
 }
 
@@ -42,11 +51,17 @@
     background-color: gray;
 }
 
-.navbar .nav a { /*link text*/
+.navbar .nav a h4 { /*link text*/
     color: white;
     text-align: center;
+
+    transition: 0.2s;
 }
 
-.navbar .nav a:hover, .navbar .nav a:focus { /*link text hover*/
-    background-color: greenyellow;
+.navbar .nav a:hover, .navbar .nav a:focus { /*link text hover box*/
+    background-color: transparent;
+}
+
+.navbar .nav a:hover h4, .navbar .nav a:focus h4 { /*link text hover*/
+    color: gold;
 }
