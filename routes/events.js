@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 var gf = require('./global_functions.js');
 var event = require('../models/event.js');
-var views_dir = "./views/events";
+var events_dir = "./views/events";
 
 
 // Get template for event
@@ -14,7 +14,7 @@ router.get('/event:id', function (req, res) {
         id = "0" + id;
     }
 
-    fs.readdir(views_dir, function(err, data) {
+    fs.readdir(events_dir, function(err, data) {
         if (err) throw err;
         if (id > 0 && id <= data.length && id.length === 2){
             var view_path = "events/event_" + id;
@@ -29,18 +29,19 @@ router.get('/event:id', function (req, res) {
 
 
 // receive data for event
-router.post('/event:id', function (req, res){
-    var id = req.params.id.substring(1, Infinity);
+router.post('/event', function (req, res){
+    //var id = req.params.id.substring(1, Infinity);
     var name = req.body.name;
     var email = req.body.email;
     var email_confirm = req.body.email_confirm;
     var working_title = req.body.working_title;
     var company = req.body.company;
     var seats_available = req.body.seats_available;
+    var event_id = req.body.event_id;
 
-    event.find({event_id: id}, function(err, data){
+    event.find({event_id: event_id}, function(err, data){
         if(data.length < seats_available){
-            event.find({email: email, event_id: id}, function(err, data) {
+            event.find({email: email, event_id: event_id}, function(err, data) {
                 if (err) throw err;
                 if (data.length === 0) {
 
@@ -62,7 +63,7 @@ router.post('/event:id', function (req, res){
                                 email: email,
                                 working_title: working_title,
                                 company: company,
-                                event_id: id,
+                                event_id: event_id,
                                 signup_date: Date.now()
                             });
 
@@ -119,7 +120,8 @@ router.post('/check_signup:id', function(req, res){
 // transmit database content
 router.get('/data:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
-    fs.readdir(views_dir, function(err, data) {
+
+    fs.readdir(events_dir, function(err, data) {
         if (id === 'length'){
             res.status(200).send({length: data.length});
 
@@ -129,12 +131,6 @@ router.get('/data:id', function (req, res) {
                 res.status(200).send({"length": data.length});
             });
 
-        } else if (id > 0 && id <= data.length){
-            event.find({event_id: id},{__v:0, _id:0}, function(err, data){
-                if(err) throw err;
-                res.status(200).send(data);
-            });
-
         } else {
             res.status(404).send(null);
         }
@@ -142,8 +138,33 @@ router.get('/data:id', function (req, res) {
 });
 
 
+// transmit database content
+router.get('/opdata:id', gf.ensureAuthenticated, function (req, res) {
+    var id = req.params.id.substring(1, Infinity);
+
+    fs.readdir(events_dir, function(err, data) {
+        if (id === 'length'){
+            res.status(200).send({length: data.length});
+
+        } else if (id.substring(0, "part_length".length) === "part_length") {
+            id = id.substring("part_length".length, Infinity);
+            event.find({event_id: id}, function(err, data){
+                res.status(200).send({"length": data.length});
+            });
+
+        } else {
+            event.find({event_id: id},{__v:0, _id:0}, function(err, data){
+                if(err) throw err;
+                res.status(200).send(data);
+            });
+        }
+    });
+});
+
+
+
 // delete whole event from database
-router.post('/delete:id', gf.ensureAuthenticated, function (req, res) {
+router.post('/delete:id', function (req, res) {
     var id = req.params.id.substring(1, Infinity);
 
     event.remove({event_id: id}, function(err){
@@ -159,11 +180,11 @@ router.post('/delete:id', gf.ensureAuthenticated, function (req, res) {
 
 
 // delete user from database
-router.post('/remove', gf.ensureAuthenticated, function (req, res) {
-    var id = req.body.id;
+router.post('/remove',  function (req, res) {
+    var event_id = req.body.id;
     var participant = req.body.participant;
 
-    event.remove({event_id: id, email: participant}, function(err){
+    event.remove({event_id: event_id, email: participant}, function(err, data){
         if (!err){
             req.flash('success_msg', 'Personen er nu afmeldt');
             res.redirect('back');

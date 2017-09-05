@@ -1,13 +1,13 @@
-<template>
+<slot>
     {
-    "title": "Syddansk universitet",
-    "time": "24. September 6.30",
-    "price": "5 dkk",
-    "seats_available": 130,
-    "index": 2
+    "title": "DGI huset København",
+    "time": "12. Februar 12.20",
+    "price": "800 dkk",
+    "seats_available": 3,
+    "order": 2,
+    "event_id" : 324324
     }
-</template>
-
+</slot>
 
 <h1 id="heading"></h1>
 <h4 id="price"></h4>
@@ -16,7 +16,7 @@
 
 <hr>
 
-<p>Denne side indeholder en beskrivelse af event_2.</p>
+<p>Denne side indeholder en beskrivelse af event_3.</p>
 
 <p>I bunden vil der være en knap.</p>
 
@@ -24,7 +24,7 @@
 
 <h2>TILMELD</h2>
 
-<form method="post" action="/event:" id="signupform">
+<form method="post" action="/event" id="signupform">
     <div class="form-group">
         <label>Navn</label>
         <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name">

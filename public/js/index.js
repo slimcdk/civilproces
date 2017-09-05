@@ -4,7 +4,7 @@ getData("length", function(response){
 
     for(var i = 1; i <= response.length; i++){
         readPage(i, function(data){
-            events.push(template_to_json(data));
+            events.push(slot_to_json(data));
 
             if (events.length == response.length) {
                 eventsReady(events);
@@ -37,7 +37,7 @@ function eventsReady(events) {
 
         /* list right */
 
-        var eventPage = 'location.href="/event:' + event.index + '"';
+        var eventPage = 'location.href="/event:' + event.order + '"';
 
         box += "<button class='draw' onclick='" + eventPage + "'>";
 

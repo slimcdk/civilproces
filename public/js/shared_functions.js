@@ -1,6 +1,6 @@
 
-function template_to_json(text){
-    var result = JSON.parse($(text).find("template").html());
+function slot_to_json(text){
+    var result = JSON.parse($(text).find("slot").html());
 
     return result;
 }
@@ -38,12 +38,11 @@ function sortEvents(events) {
 
     for (var i = 1; i <= events.length; i++) {
         for (var j = 0; j < events.length; j++) {
-            if (events[j].index == i) {
+            if (events[j].order == i) {
                 result.push(events[j]);
             }
         }
     }
-
     return result;
 }
 

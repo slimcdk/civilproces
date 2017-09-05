@@ -1,12 +1,13 @@
-<template>
+<slot>
     {
     "title": "Århus universitet",
     "time": "20. Januar 18.50",
     "price": "12.000",
     "seats_available": 56,
-    "index": 1
+    "order": 1,
+    "event_id" : 789
     }
-</template>
+</slot>
 
 
 <h1 id="heading"></h1>
@@ -24,6 +25,7 @@
 <p>Knappen fører til en tilmeldingsform.</p>
 
 <p>Denne side har en masse tekstfyld.</p>
+
 <p>1</p>
 <p>2</p>
 <p>3</p>
@@ -47,7 +49,7 @@
 
 <h2>TILMELD</h2>
 
-<form method="post" action="/event:" id="signupform">
+<form method="post" action="/event" id="signupform">
     <div class="form-group">
         <label>Navn</label>
         <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name">

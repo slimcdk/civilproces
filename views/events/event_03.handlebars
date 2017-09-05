@@ -1,12 +1,13 @@
-<template>
+<slot>
     {
-    "title": "DGI huset København",
-    "time": "12. Februar 12.20",
-    "price": "800 dkk",
-    "seats_available": 3,
-    "index": 3
+    "title": "Banegården",
+    "time": "27. Marts 19.14",
+    "price": "12.000",
+    "seats_available": 35,
+    "order": 4,
+    "event_id" : 3242354
     }
-</template>
+</slot>
 
 
 <h1 id="heading"></h1>
@@ -14,9 +15,10 @@
 <h4 id="time_date"></h4>
 <h4 id="seats"></h4>
 
+
 <hr>
 
-<p>Denne side indeholder en beskrivelse af event_3.</p>
+<p>Denne side indeholder en beskrivelse af event_4.</p>
 
 <p>I bunden vil der være en knap.</p>
 
@@ -24,7 +26,7 @@
 
 <h2>TILMELD</h2>
 
-<form method="post" action="/event:" id="signupform">
+<form method="post" action="/event" id="signupform">
     <div class="form-group">
         <label>Navn</label>
         <input id="name" type="text" class="form-control" placeholder="Fx. Anders Andersen..." name="name">
