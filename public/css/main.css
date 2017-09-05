@@ -49,7 +49,9 @@ html, body {
 }
 
 #body_box a:link, #body_box a:visited, #body_box a:hover, #body_box a:active {
-    color: goldenrod;
+    /*color: goldenrod;*/
+    color: #D7B740;
+
     text-decoration: none;
 }
 

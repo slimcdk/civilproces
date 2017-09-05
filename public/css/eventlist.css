@@ -93,16 +93,16 @@
 }
 
 .draw:hover::before {
-    border-top-color: gold;
-    border-right-color: gold;
+    border-top-color: #D7B740;
+    border-right-color: #D7B740;
     transition:
             width 0.25s ease-out,
             height 0.25s ease-out 0.25s;
 }
 
 .draw:hover::after {
-    border-bottom-color: gold;
-    border-left-color: gold;
+    border-bottom-color: #D7B740;
+    border-left-color: #D7B740;
     transition:
             border-color 0s ease-out 0.5s,
             width 0.25s ease-out 0.5s,

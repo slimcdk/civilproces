@@ -2,7 +2,7 @@
 $.get('/blog:length').then(function(responseData) {
     for(var i = 1; i <= responseData.length; i++){
         readPost(i, function(data){
-            var thispost = template_to_json(data);
+            var thispost = slot_to_json(data);
             createFrontPost(thispost);
         });
     }
