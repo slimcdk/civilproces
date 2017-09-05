@@ -1,9 +1,24 @@
 
-.list_num {
-    counter-reset: section;
+p, h1, h2, h3, h4, h5, h6 {
+    color: white;
 }
 
-.list_num p::before {
-    counter-increment: section;
-    content: counter(section);
+.heading {
+
+}
+
+.author {
+
+}
+
+.block {
+
+}
+
+.block p {
+
+}
+
+.block h2 {
+
 }

@@ -1,0 +1,24 @@
+
+p, h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+.heading .big {
+    margin-top: 80px;
+    font-size: 700%;
+}
+
+.heading .small {
+    margin-top: 40px;
+    margin-left: 10%;
+    font-size: 400%;
+}
+
+.summary .text {
+    /*background-color: #5cb85c;*/
+    margin: 20px 0 200px 0;
+    padding: 10px 50px;
+}
+
+
+
