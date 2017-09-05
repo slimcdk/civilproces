@@ -93,16 +93,16 @@
 }
 
 .draw:hover::before {
-    border-top-color: #D7B740;
-    border-right-color: #D7B740;
+    border-top-color: #C9A67D;
+    border-right-color: #C9A67D;
     transition:
             width 0.25s ease-out,
             height 0.25s ease-out 0.25s;
 }
 
 .draw:hover::after {
-    border-bottom-color: #D7B740;
-    border-left-color: #D7B740;
+    border-bottom-color: #C9A67D;
+    border-left-color: #C9A67D;
     transition:
             border-color 0s ease-out 0.5s,
             width 0.25s ease-out 0.5s,

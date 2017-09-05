@@ -1,6 +1,6 @@
 
 function slot_to_json(text){
-    var result = JSON.parse($(text).find("slot").html());
+    var result = JSON.parse($(text).find("template").html());
 
     return result;
 }

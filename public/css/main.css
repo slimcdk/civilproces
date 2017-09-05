@@ -43,14 +43,14 @@ html, body {
 
 
 
-#body_box p, #body_box h1, #body_box h2, #body_box h3, #body_box h4, #body_box h5, #body_box h6 {
+/*#body_box p, #body_box h1, #body_box h2, #body_box h3, #body_box h4, #body_box h5, #body_box h6 {
     color: white;
-    /*color: #C29545;*/
-}
+}*/
 
 #body_box a:link, #body_box a:visited, #body_box a:hover, #body_box a:active {
     /*color: goldenrod;*/
-    color: #D7B740;
+    /*color: #D7B740;*/
+    color: #C9A67D;
 
     text-decoration: none;
 }

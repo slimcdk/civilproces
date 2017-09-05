@@ -1,4 +1,4 @@
-var data = JSON.parse($("slot").html());
+var data = JSON.parse($("template").html());
 
 window.onload = function(){
 

@@ -16,7 +16,7 @@ getData("length", function(response){
 
 
 $(document).ready(function() {
-    $("#body_box, #top-menu-box, #info").removeClass("col-md-12").addClass("col-md-9");
+    $("#body_box, #top-menu-box, #info").removeClass("col-md-12").addClass("col-md-8 col-lg-9");
     $("#index-event-box-right").removeClass("hidden-md hidden-lg");
     $("#index-event-box-bottom").removeClass("hidden-xs hidden-sm");
 });
@@ -42,9 +42,9 @@ function eventsReady(events) {
         box += "<button class='draw' onclick='" + eventPage + "'>";
 
         box += "<div>";
-        box += "<h3>" + event.title + "</h3>";
-        box += "<h3>" + event.time + "</h3>";
-        box += "<h3>" + event.price + "</h3>";
+        box += "<h3>" + event.button_line_1 + "</h3>";
+        box += "<h3>" + event.button_line_2 + "</h3>";
+        box += "<h3>" + event.button_line_3 + "</h3>";
         box += "</div>";
 
         box += "</button>";
@@ -61,9 +61,9 @@ function eventsReady(events) {
         box += "<button class='draw' onclick='" + eventPage + "'>";
 
         box += "<div>";
-        box += "<h3>" + event.title + "</h3>";
-        box += "<h3>" + event.time + "</h3>";
-        box += "<h3>" + event.price + "</h3>";
+        box += "<h3>" + event.button_line_1 + "</h3>";
+        box += "<h3>" + event.button_line_2 + "</h3>";
+        box += "<h3>" + event.button_line_3 + "</h3>";
         box += "</div>";
 
         box += "</button>";

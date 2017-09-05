@@ -29,7 +29,7 @@
 
 .navbar .navbar-brand:hover h2,
 .navbar .navbar-brand:focus h2 { /*name hover*/
-    color: gold;
+    color: #C9A67D;
 }
 
 .navbar .navbar-toggle { /*dropdown button*/
@@ -63,5 +63,5 @@
 }
 
 .navbar .nav a:hover h4, .navbar .nav a:focus h4 { /*link text hover*/
-    color: gold;
+    color: #C9A67D;
 }

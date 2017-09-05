@@ -1,0 +1,181 @@
+
+p, h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+/***********/
+/** intro **/
+/***********/
+
+.intro {
+    /*background-color: #761c19;*/
+    margin: 60px 0;
+}
+
+.intro .head h1 {
+    font-size: 400%;
+}
+
+/************/
+/** topics **/
+/************/
+
+.topics {
+    /*background-color: #c3325f;*/
+    margin: 120px 0;
+}
+
+.topics .heading {
+    /*background-color: #c3325f;*/
+    margin-left: 10px;
+}
+
+.topics .item {
+    /*background-color: #5cb85c;*/
+    padding: 0;
+}
+
+.topics .item table {
+    margin: 10px;
+    /*background-color: #c1e2b3;*/
+}
+
+.topics .item .number h3 {
+    color: #C9A67D;
+}
+
+.topics .item .number {
+    width: 40px;
+}
+
+.topics .item .text {
+    padding-right: 20px;
+}
+
+/**************/
+/** schedule **/
+/**************/
+
+.schedule {
+    /*background-color: #c1e2b3;*/
+    margin: 60px 30px;
+}
+
+.schedule h2, .schedule h3, .schedule p {
+    margin: 0;
+}
+
+.schedule .time {
+    /*background-color: #761c19;*/
+    margin: 4px 0;
+}
+
+.schedule .content {
+    /*background-color: #5cb85c;*/
+    margin-left: 38px;
+    border-left: solid 6px #C9A67D;
+    padding: 4px 12px;
+}
+
+.schedule .content p {
+    border-top: solid 1px gray;
+    margin-top: 8px;
+}
+
+/*************/
+/** sign up **/
+/*************/
+
+.signup {
+    /*background-color: #269abc;*/
+}
+
+.check {
+    margin: 60px 0;
+}
+
+.signup .info {
+    /*background-color: orange;*/
+    margin: 20px 0;
+}
+
+.signup .info h4 {
+    /*background-color: red;*/
+    margin: 0 20px;
+}
+
+.signup .info h3 {
+    /*background-color: #761c19;*/
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.signup .form {
+    margin: 20px 0;
+}
+
+.signup .form input,
+.check input {
+    border: solid 1px gray;
+    border-radius: 2px;
+    background: none;
+    height: 50px;
+    width: 100%;
+    margin: 12px 0;
+}
+
+.signup input, .check input,
+.signup select, .check select,
+.signup textarea, .check textarea {
+    padding: 20px;
+    color: #C9A67D;
+}
+
+.signup input.repeat , .signup select.repeat , .signup textarea.repeat  {
+    padding: 20px;
+    color: #dd923c;
+}
+
+.signup .form button, .check button {
+    padding: 10px;
+    margin: 12px 0;
+    border-style: solid;
+    border-color: #C9A67D;
+    border-radius: 2px;
+    border-width: 3px 0;
+    background: none;
+    color: white;
+    width: 200px;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: #C9A67D;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.spacing {
+    /*height: 100px;*/
+}
+
+.gold {
+    color: #C9A67D;
+}
