@@ -26,7 +26,11 @@ function drawTaps(events) {
         var output = '<li><a onclick="drawLists('+id+')"><b>' + title+'</b></a></li>';
         $('#event_menu').find("ul").append(output);
     }
-    drawLists(sessionStorage.getItem("adminpage_eventid"));
+
+    // if session storage has event_id from previous selection, use that
+    if (sessionStorage.getItem("adminpage_eventid") !== "null") {
+        drawLists(sessionStorage.getItem("adminpage_eventid"));
+    }
 }
 
 
@@ -36,7 +40,6 @@ function drawLists(id) {
     $('#delete_event_btn').find("button").remove();
 
     getAdminData(id, function(response){
-        console.log(response);
         if(response.length > 0){
             var output = "";
             for(var i = 0; i < response.length; i++) {
@@ -47,7 +50,7 @@ function drawLists(id) {
                 output += '<td>' + response[i].working_title + '</td>';
                 output += '<td><a href="mailto:'+response[i].email+'">' + response[i].email + '</a></td>';
                 output += '<td>' + convertTimeNoYear(response[i].signup_date) + '</td>';
-                output += "<td><button class='btn btn-danger' onclick='removePart("+ response[i].event_id + ',' + JSON.stringify(response[i].email) + ")'>Afmeld deltager</button></td>";
+                output += "<td><button class='btn btn-danger' onclick='removePart("+ response[i].event_id + ',' + JSON.stringify(response[i].email) +")'>Afmeld deltager</button></td>";
                 output += '</tr>';
             }
             output += '<tr>';
@@ -84,7 +87,7 @@ function deleteList(id){
         $.ajax({
             type: "POST",
             url: "/delete:" + id,
-            success: location.reload(true)
+            success: drawLists(id)
         });
     }
 }
@@ -95,7 +98,7 @@ function removePart(id, participant){
             type: "POST",
             url: "/remove",
             data: {id, participant},
-            success: location.reload(true)
+            success: drawLists(id)
         });
     }
 }

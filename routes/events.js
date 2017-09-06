@@ -142,23 +142,26 @@ router.get('/data:id', function (req, res) {
 router.get('/opdata:id', gf.ensureAuthenticated, function (req, res) {
     var id = req.params.id.substring(1, Infinity);
 
-    fs.readdir(events_dir, function(err, data) {
-        if (id === 'length'){
-            res.status(200).send({length: data.length});
+    if (id !== "undefined" && id !== "null") {
 
-        } else if (id.substring(0, "part_length".length) === "part_length") {
-            id = id.substring("part_length".length, Infinity);
-            event.find({event_id: id}, function(err, data){
-                res.status(200).send({"length": data.length});
-            });
+        fs.readdir(events_dir, function (err, data) {
+            if (id === 'length') {
+                res.status(200).send({length: data.length});
 
-        } else {
-            event.find({event_id: id},{__v:0, _id:0}, function(err, data){
-                if(err) throw err;
-                res.status(200).send(data);
-            });
-        }
-    });
+            } else if (id.substring(0, "part_length".length) === "part_length") {
+                id = id.substring("part_length".length, Infinity);
+                event.find({event_id: id}, function (err, data) {
+                    res.status(200).send({"length": data.length});
+                });
+
+            } else {
+                event.find({event_id: id}, {__v: 0, _id: 0}, function (err, data) {
+                    if (err) throw err;
+                    res.status(200).send(data);
+                });
+            }
+        });
+    }
 });
 
 
@@ -187,10 +190,10 @@ router.post('/remove',  function (req, res) {
     event.remove({event_id: event_id, email: participant}, function(err, data){
         if (!err){
             req.flash('success_msg', 'Personen er nu afmeldt');
-            res.redirect('back');
+            //res.redirect('back');
         } else {
             req.flash('error_msg', 'Der opstod en fejl under afmeldingen');
-            res.redirect('back');
+            //res.redirect('back');
         }
     });
 });
