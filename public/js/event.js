@@ -33,3 +33,11 @@ function saveInputValues() {
         "</div>"
     );
 }
+
+function checkEmail() {
+    $('#checkmailform').append(
+        "<div class='form-group hidden'>" +
+        "<input id='event_id' value='"+ data.event_id +"' name='event_id'>" +
+        "</div>"
+    );
+}

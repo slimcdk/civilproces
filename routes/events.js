@@ -88,9 +88,9 @@ router.post('/event', function (req, res){
 
 
 // check if mail is assigned to event
-router.post('/check_signup:id', function(req, res){
-    var id = req.params.id.substring(1, Infinity);
+router.post('/check_signup', function(req, res){
     var email = req.body.email;
+    var event_id = req.body.event_id;
 
     req.checkBody('email', 'Indtast venligst en email').notEmpty();
     req.checkBody('email', 'Tjek venligst at emailen er indtastet korrekt!').isEmail();
@@ -100,7 +100,7 @@ router.post('/check_signup:id', function(req, res){
             req.flash('error_msg', 'Der opsted et problem med valideringen af de indtastede oplysninger. ' + result.array()[0].msg);
             res.redirect('back');
         } else {
-            event.find({event_id: id, email: email}, function(err, data){
+            event.find({event_id: event_id, email: email}, function(err, data){
                 if(err) throw err;
                 if(data.length !== 0){
                     if(data[0].email === email){

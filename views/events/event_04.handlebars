@@ -238,7 +238,7 @@
             </div>
 
             <div class="info col-xs-12 col-md-6">
-                <form method="post" action="/check_signup:">
+                <form method="post" action="/check_signup" id="checkmailform">
                     <!--<div class="form-group">
                         <label>Email</label>
                         <input type="email" class="form-control" placeholder="Email" name="email">
@@ -246,7 +246,7 @@
                     <button type="submit" class="btn btn-default">TJEK TILMELDING</button>-->
 
                     <input type="email" placeholder="Email" name="email">
-                    <button type="submit" class="btn btn-default">TJEK TILMELDING</button>
+                    <button type="submit" onclick="checkEmail()">TJEK TILMELDING</button>
                 </form>
             </div>
         </div>
