@@ -47,6 +47,12 @@ router.get('/about', function (req, res) {
 
 
 // Get about
+router.get('/policies', function (req, res) {
+    res.render('policies', {title: "Privathedspolitik"});
+});
+
+
+// Get about
 router.get('/contact', function (req, res) {
     res.render('contact', {title: "Kontakt"});
 });
