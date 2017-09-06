@@ -10,14 +10,93 @@ getAdminData("length", function(response){
             events.push(slot_to_json(data));
 
             if (events.length === response.length) {
-                drawTaps(events);
+                // drawTaps(events);
+                dataReady(events);
             }
         });
     }
 });
 
+function dataReady(events) {
+    events = sortEvents(events);
 
-function drawTaps(events) {
+    for (var i = 0; i < events.length; i++) {
+        createMenu(events[i]);
+        createTabel(events[i]);
+    }
+}
+
+function createMenu(event) {
+
+}
+
+function createTabel(event) {
+    console.log(event);
+
+    getAdminData(event.event_id, function(response){
+        console.log(response);
+        var table = "";
+
+        if(response.length > 0){
+            table += "<table border='1'>";
+
+            table += tableHead();
+
+            for (var i = 0; i < response.length; i++) {
+                table += createTabelRow(response[i], i);
+            }
+
+            table += "</table>";
+        } else {
+            table += "<h4>Ingen tilmeldte</h4>";
+        }
+
+        $("#table_box").append("<h2>" + event.title + ", order: " + event.order + ", event_id: " + event.event_id + "</h2>" + table);
+    });
+}
+
+function tableHead() {
+    var head = "";
+
+    head += "<tr>";
+    head += "<td>#</td>";
+    head += "<td>Navn</td>";
+    head += "<td>Firma</td>";
+    head += "<td>Titel</td>";
+    head += "<td>E-mail</td>";
+    head += "<td>Tilmeldt</td>";
+    head += "<td>Afmeld</td>";
+    head += "<tr>";
+
+    return head;
+}
+
+function createTabelRow(user, index) {
+    var item = "";
+
+    item += "<tr>";
+    item += '<td>' + (index + 1) + '</td>';
+    item += "<td>" + user.name + "</td>";
+    item += "<td>" + user.company + "</td>";
+    item += "<td>" + user.working_title + "</td>";
+    item += "<td><a href='mailto:" + user.email + "'>" + user.email + "</a></td>";
+    item += "<td>" + convertTimeNoYear(user.signup_date) + "</td>";
+    item += "<td>BUTTON</td>";
+    item += "<tr>";
+
+    return item;
+}
+
+
+
+
+
+
+
+
+
+
+/*function drawTaps(events) {
     events = sortEvents(events);
     for(var i = 0; i < events.length; i++){
         var title = events[i].title;
@@ -79,7 +158,27 @@ function collectMails (data) {
     }
     mail_list = mail_list.substring(0, mail_list.length - 1);
     return mail_list;
-}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function deleteList(id){

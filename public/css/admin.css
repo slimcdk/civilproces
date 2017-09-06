@@ -1,0 +1,23 @@
+
+p, h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+#table_box table {
+    width: 100%;
+    /*background-color: #5cb85c;*/
+}
+
+#table_box table th, #table_box table td {
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
