@@ -47,6 +47,9 @@ function createTabel(event) {
             }
 
             table += "</table>";
+
+            table += "<a href='mailto:" + collectMails(response) + "'><b>Send mail til alle</b></a>";
+            table += "<button onclick='deleteList(" + response[0].event_id + ")'>Slet listen til dette event</button>";
         } else {
             table += "<h4>Ingen tilmeldte</h4>";
         }
@@ -81,7 +84,7 @@ function createTabelRow(user, index) {
     item += "<td>" + user.working_title + "</td>";
     item += "<td><a href='mailto:" + user.email + "'>" + user.email + "</a></td>";
     item += "<td>" + convertTimeNoYear(user.signup_date) + "</td>";
-    item += "<td>BUTTON</td>";
+    item += "<td><button onclick='removePart(" + user.event_id + ',' + JSON.stringify(user.email) + ")'>Afmeld deltager</button></td>";
     item += "<tr>";
 
     return item;
@@ -148,7 +151,7 @@ function drawLists(id) {
             $('#data_insert').append('<tr><td><b>Der er ingen tilmeldte på nuværende tidspunkt</b></td></td>');
         }
     });
-}
+}*/
 
 function collectMails (data) {
     var mail_list = "";
@@ -158,7 +161,7 @@ function collectMails (data) {
     }
     mail_list = mail_list.substring(0, mail_list.length - 1);
     return mail_list;
-}*/
+}
 
 
 
@@ -186,7 +189,7 @@ function deleteList(id){
         $.ajax({
             type: "POST",
             url: "/delete:" + id,
-            success: drawLists(id)
+            success: location//drawLists(id)
         });
     }
 }
@@ -197,7 +200,7 @@ function removePart(id, participant){
             type: "POST",
             url: "/remove",
             data: {id, participant},
-            success: drawLists(id)
+            success: location//drawLists(id)
         });
     }
 }
