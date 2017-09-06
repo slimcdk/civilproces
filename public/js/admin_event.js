@@ -20,14 +20,35 @@ getAdminData("length", function(response){
 function dataReady(events) {
     events = sortEvents(events);
 
+    createMenu(events);
+
     for (var i = 0; i < events.length; i++) {
-        createMenu(events[i]);
         createTabel(events[i]);
     }
 }
 
-function createMenu(event) {
+function createMenu(events) {
+    var tabs = "";
 
+    tabs += "<table><tr>";
+
+    for (var i = 0; i < events.length; i++) {
+        tabs += "<td>";
+        tabs += "<button onclick='adminShowTabel(" + events[i].event_id + ")'>" + events[i].title + "</button>";
+        tabs += "</td>"
+    }
+
+    tabs += "</tr></table>";
+
+    $("#tabs_box").html(tabs);
+}
+
+function adminShowTabel(id) {
+    console.log(id);
+
+    $(".eventlist_item").hide(200);
+
+    $("#eventlist_" + id).show(200);
 }
 
 function createTabel(event) {
@@ -54,22 +75,24 @@ function createTabel(event) {
             table += "<h4>Ingen tilmeldte</h4>";
         }
 
-        $("#table_box").append("<h2>" + event.title + ", order: " + event.order + ", event_id: " + event.event_id + "</h2>" + table);
+        //"<h2>" + event.title + ", order: " + event.order + ", event_id: " + event.event_id + "</h2>"
+
+        $("#table_box").append("<div class='eventlist_item' id='eventlist_" + event.event_id + "'><h2>" + event.title + "</h2>" + table + "</div>");
     });
 }
 
 function tableHead() {
     var head = "";
 
-    head += "<tr>";
-    head += "<td>#</td>";
-    head += "<td>Navn</td>";
-    head += "<td>Firma</td>";
-    head += "<td>Titel</td>";
-    head += "<td>E-mail</td>";
-    head += "<td>Tilmeldt</td>";
-    head += "<td>Afmeld</td>";
-    head += "<tr>";
+    head += "<thead>";
+    head += "<th>#</th>";
+    head += "<th>Navn</th>";
+    head += "<th>Firma</th>";
+    head += "<th>Titel</th>";
+    head += "<th>E-mail</th>";
+    head += "<th>Tilmeldt</th>";
+    head += "<th>Afmeld</th>";
+    head += "</thead>";
 
     return head;
 }

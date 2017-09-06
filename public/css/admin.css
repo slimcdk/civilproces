@@ -3,6 +3,35 @@ p, h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+#tabs_box {
+    color: red;
+}
+
+#tabs_box table td {
+    border: solid 4px green;
+    width: 200px;
+    max-width: 25%;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+#tabs_box table td button {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+#table_box {
+    margin: 0 20px;
+}
+
 #table_box table {
     width: 100%;
     /*background-color: #5cb85c;*/
@@ -11,6 +40,18 @@ p, h1, h2, h3, h4, h5, h6 {
 #table_box table th, #table_box table td {
     color: white;
 }
+
+#table_box table tr {
+    background-color: #c1e2b3;
+    transition: 0.1s;
+}
+
+#table_box table tr:hover {
+    background-color: #761c19;
+}
+
+
+
 
 
 
