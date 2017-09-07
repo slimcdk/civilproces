@@ -18,11 +18,11 @@ html, body {
 .wrapper {
     background-color: #2D3033;
     min-height: 100%;
-    margin-bottom: -40px;
+    margin-bottom: calc(-40px - 1vw);
 }
 
 #info, .wrapper:after {
-    height: 40px;
+    height: calc(40px + 1vw);
 }
 
 #info {
@@ -32,8 +32,8 @@ html, body {
 }
 
 #info p {
-    font-size: 120%;
-    line-height: 40px;
+    font-size: calc(10px + 0.7vw);
+    line-height: calc(40px + 1vw);
     margin: 0;
 }
 
@@ -94,3 +94,16 @@ html, body {
     border-right: none;
 }
 
+
+
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Crimson Text';
+}
+
+p {
+    font-family: 'Raleway';
+}

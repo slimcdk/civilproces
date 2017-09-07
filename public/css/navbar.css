@@ -13,6 +13,8 @@
     /*background: rgba(51, 107, 135, 0.8);*/
     /*background: rgba(45, 66, 98, 0.9);*/
     background: rgba(0, 41, 60, 0.9);
+
+    min-height: calc(50px + 2vw);
 }
 
 .navbar .navbar-brand h2 { /*name*/
@@ -25,6 +27,8 @@
     text-shadow: none;
 
     transition: 0.2s;
+
+    font-size: calc(24px + 2vw);
 }
 
 .navbar .navbar-brand:hover h2,
@@ -56,6 +60,8 @@
     text-align: center;
 
     transition: 0.2s;
+
+    font-size: calc(20px + 0.6vw);
 }
 
 .navbar .nav a:hover, .navbar .nav a:focus { /*link text hover box*/

@@ -74,4 +74,3 @@ function eventsReady(events) {
     $("#index-event-box-right").addClass("onPage");
     $("#index-event-box-bottom").addClass("onPage");
 }
-

@@ -34,7 +34,7 @@ function createMenu(events) {
 
     for (var i = 0; i < events.length; i++) {
         tabs += "<td>";
-        tabs += "<button onclick='adminShowTabel(" + events[i].event_id + ")'>" + events[i].title + "</button>";
+        tabs += "<button class='eventbutton' id='eventbutton_" + events[i].event_id + "' onclick='adminShowTabel(" + events[i].event_id + ")'>" + events[i].title + "</button>";
         tabs += "</td>"
     }
 
@@ -47,7 +47,8 @@ function adminShowTabel(id) {
     console.log(id);
 
     $(".eventlist_item").hide(200);
-
+    $(".eventbutton").removeClass("chosen_event");
+    $("#eventbutton_" + id).addClass("chosen_event");
     $("#eventlist_" + id).show(200);
 }
 
@@ -87,11 +88,11 @@ function tableHead() {
     head += "<thead>";
     head += "<th>#</th>";
     head += "<th>Navn</th>";
-    head += "<th>Firma</th>";
-    head += "<th>Titel</th>";
+    head += "<th class='hidden-xs'>Firma</th>";
+    head += "<th class='hidden-xs'>Titel</th>";
     head += "<th>E-mail</th>";
-    head += "<th>Tilmeldt</th>";
-    head += "<th>Afmeld</th>";
+    head += "<th class='hidden-xs'>Tilmeldt</th>";
+    head += "<th class='hidden-xs'>Afmeld</th>";
     head += "</thead>";
 
     return head;
@@ -103,11 +104,14 @@ function createTabelRow(user, index) {
     item += "<tr>";
     item += '<td>' + (index + 1) + '</td>';
     item += "<td>" + user.name + "</td>";
-    item += "<td>" + user.company + "</td>";
-    item += "<td>" + user.working_title + "</td>";
-    item += "<td><a href='mailto:" + user.email + "'>" + user.email + "</a></td>";
-    item += "<td>" + convertTimeNoYear(user.signup_date) + "</td>";
-    item += "<td><button onclick='removePart(" + user.event_id + ',' + JSON.stringify(user.email) + ")'>Afmeld deltager</button></td>";
+    item += "<td class='hidden-xs'>" + user.company + "</td>";
+    item += "<td class='hidden-xs'>" + user.working_title + "</td>";
+
+    item += "<td class='hidden-xs'><a href='mailto:" + user.email + "'>" + user.email + "</a></td>";
+    item += "<td class='visible-xs'><a href='mailto:" + user.email + "'>Send mail</a></td>";
+
+    item += "<td class='hidden-xs'>" + convertTimeNoYear(user.signup_date) + "</td>";
+    item += "<td class='hidden-xs'><button onclick='removePart(" + user.event_id + ',' + JSON.stringify(user.email) + ")'>Afmeld deltager</button></td>";
     item += "<tr>";
 
     return item;
